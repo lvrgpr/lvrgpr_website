@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <title>News | LVRG PR</title>
+        <style>
+            /* Modern Financial Services CSS with Adjusted Color Scheme */
+            :root {
+                --dark-gray: #353535;
+                --teal: #65c5d4;
+                --white: #ffffff;
+                --light-gray: #ffffff;
+                --purple-bg: #4a0d5f;
+                --navy: #33133d;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+            body {
+                line-height: 1.6;
+                color: var(--white);
+                background-color: var(--purple-bg);
+            }
+            h1,
+            h2,
+            h3,
+            .logo {
+                font-weight: 700;
+                color: var(--white);
+            }
+            .container {
+                width: 100%;
+                padding: 0 40px;
+            }
+
+            /* Header */
+            header {
+                position: fixed;
+                width: 100%;
+                background: var(--purple-bg);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 80px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .logo {
+                font-size: 36px;
+                font-family: "Cinzel", serif;
+                color: var(--white); /* White logo */
+                letter-spacing: 2px;
+                font-weight: 400; /* Reduced from default bold */
+            }
+            nav ul {
+                display: flex;
+                list-style: none;
+            }
+            nav ul li {
+                margin-left: 30px;
+            }
+            nav ul li a {
+                text-decoration: none;
+                color: var(--white);
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+            nav ul li a:hover {
+                color: var(--teal);
+            }
+
+            /* Hero Section */
+            .hero {
+                background: var(--purple-bg);
+                padding: 180px 0 100px;
+            }
+            .hero-content {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .hero h1 {
+                font-size: 64px;
+                color: var(--white);
+                line-height: 1.1;
+                width: 100%;
+            }
+
+            /* Past Events Section */
+            .past-events-section {
+                padding: 0 0 10px;
+                background: var(--purple-bg);
+            }
+            .carousel-container {
+                position: relative;
+                max-width: 800px;
+                margin: 0 auto;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 8px;
+                border-left: 4px solid var(--teal);
+                padding: 40px 30px;
+            }
+            .carousel-wrapper {
+                overflow: hidden;
+                border-radius: 8px;
+            }
+            .carousel-track {
+                display: flex;
+                transition: transform 0.5s ease;
+            }
+            .carousel-slide {
+                min-width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+            .carousel-slide a {
+                display: block;
+                max-width: 100%;
+            }
+            .carousel-slide img {
+                width: 100%;
+                height: auto;
+                max-height: 600px;
+                object-fit: contain;
+                border-radius: 8px;
+                background: var(--white);
+            }
+            .carousel-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(101, 197, 212, 0.8);
+                border: none;
+                color: var(--white);
+                padding: 15px 20px;
+                cursor: pointer;
+                border-radius: 50%;
+                font-size: 18px;
+                font-weight: bold;
+                transition: background 0.3s ease;
+                z-index: 10;
+            }
+            .carousel-nav:hover {
+                background: var(--teal);
+            }
+            .carousel-nav.prev {
+                left: 10px;
+            }
+            .carousel-nav.next {
+                right: 10px;
+            }
+            .carousel-dots {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .carousel-dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                border: none;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+            .carousel-dot.active {
+                background: var(--teal);
+            }
+
+            /* Research Section */
+            .research-section {
+                padding: 100px 0;
+                background: var(--purple-bg);
+            }
+            .section-container {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .section-title {
+                text-align: left;
+                margin-bottom: 50px;
+                color: var(--white);
+                font-size: 36px;
+            }
+            .medium-embed {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 30px;
+                border-radius: 8px;
+                border-left: 4px solid var(--teal);
+                margin-bottom: 40px;
+            }
+            .medium-articles {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            .medium-article {
+                background: var(--white);
+                padding: 20px;
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            .medium-article-image {
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                margin-bottom: 15px;
+                border-radius: 4px;
+            }
+            .medium-article h3 {
+                color: var(--purple-bg);
+                margin-bottom: 15px;
+                font-size: 18px;
+                line-height: 1.4;
+            }
+            .medium-article p {
+                color: var(--dark-gray);
+                margin-bottom: 15px;
+                line-height: 1.6;
+                font-size: 14px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 5;
+                -webkit-box-orient: vertical;
+            }
+            .medium-article a {
+                color: var(--teal);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 14px;
+            }
+
+            /* News Section */
+            .news-section {
+                padding: 0 0 100px;
+                background: var(--purple-bg);
+            }
+            .featured-container {
+                display: block;
+                width: 100%;
+            }
+            .news-list {
+                width: 100%;
+            }
+            .news-item {
+                padding: 25px 0;
+                border-bottom: 1px solid var(--teal);
+            }
+            .news-item h3 {
+                color: var(--white);
+                margin-bottom: 10px;
+                font-size: 20px;
+            }
+            .news-item h3 a {
+                transition: color 0.3s ease;
+                color: var(--purple-bg);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            .news-item h3 a:hover {
+                color: var(--teal) !important; /* Force override */
+            }
+            .news-item .date {
+                color: var(--teal);
+                font-size: 14px;
+                margin-top: 8px;
+                font-weight: 500;
+            }
+            .load-more-container {
+                width: 100%;
+                text-align: center;
+                margin-top: 30px;
+            }
+            .load-more-btn {
+                background: var(--teal);
+                color: var(--white);
+                border: none;
+                padding: 12px 30px;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background 0.3s;
+                display: inline-block;
+            }
+            .load-more-btn:hover {
+                background: var(--navy);
+            }
+
+            /* Footer */
+            footer {
+                background: var(--purple-bg);
+                color: var(--white);
+                padding: 80px 0 40px;
+            }
+            .footer-content {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .footer-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 60px;
+                margin-bottom: 60px;
+            }
+            .footer-col h4 {
+                margin-bottom: 25px;
+                font-weight: 600;
+                font-size: 18px;
+                color: var(--white);
+            }
+            .footer-col ul {
+                list-style: none;
+            }
+            .footer-col ul li {
+                margin-bottom: 12px;
+            }
+            .footer-col ul li a {
+                color: var(--light-gray);
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+            .footer-col ul li a:hover {
+                color: var(--teal);
+            }
+            .copyright {
+                text-align: center;
+                padding-top: 40px;
+                border-top: 1px solid var(--teal);
+                color: var(--light-gray);
+            }
+
+            /* Responsive */
+            @media (max-width: 1024px) {
+                .hero h1 {
+                    font-size: 54px;
+                }
+                .medium-articles {
+                    grid-template-columns: 1fr;
+                }
+                .featured-container {
+                    flex-direction: column;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    padding: 0 30px;
+                }
+                .header-container {
+                    flex-direction: column;
+                    height: auto;
+                    padding: 20px 0;
+                }
+                nav ul {
+                    margin-top: 20px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                nav ul li {
+                    margin: 0 15px 10px;
+                }
+                .hero {
+                    padding: 140px 0 80px;
+                }
+                .hero h1 {
+                    font-size: 38px;
+                }
+                .section-title {
+                    font-size: 30px;
+                }
+                .footer-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 40px;
+                }
+                .carousel-nav {
+                    padding: 10px 15px;
+                    font-size: 16px;
+                }
+                .carousel-nav.prev {
+                    left: 5px;
+                }
+                .carousel-nav.next {
+                    right: 5px;
+                }
+            }
+        </style>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="header-container">
+                    <div class="logo">LVRG PR</div>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="news.html">News</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Latest News & Research</h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- Past Events Section -->
+        <section class="past-events-section">
+            <div class="container">
+                <div class="section-container">
+                    <h2 class="section-title">Past Events</h2>
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" id="carousel-track">
+                                <div class="carousel-slide">
+                                    <a
+                                        href="https://x.com/SignalPlus_Web3/status/1866419593692225744"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            src="image1.jpeg"
+                                            alt="SignalPlus Event"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="carousel-slide">
+                                    <a
+                                        href="https://x.com/Bybit_Official/status/1881748598594908282"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            src="image2.jpeg"
+                                            alt="Bybit Event"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="carousel-slide">
+                                    <a
+                                        href="https://x.com/Coincall_Global/status/1897174817276858440"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            src="image3.jpeg"
+                                            alt="Coincall Event"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="carousel-slide">
+                                    <a
+                                        href="https://x.com/Bybit_Official/status/1915300287725920502"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            src="image4.jpeg"
+                                            alt="Bybit Event 2"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="carousel-slide">
+                                    <a
+                                        href="https://x.com/DeribitOfficial/status/1934973625234305092"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            src="image5.jpeg"
+                                            alt="Deribit Event"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="carousel-slide">
+                                    <a
+                                        href="https://x.com/SignalPlus_Web3/status/1950105636089573504"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            src="image6.jpeg"
+                                            alt="SignalPlus Event 2"
+                                        />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="carousel-nav prev"
+                            onclick="moveCarousel(-1)"
+                        >
+                            ‹
+                        </button>
+                        <button
+                            class="carousel-nav next"
+                            onclick="moveCarousel(1)"
+                        >
+                            ›
+                        </button>
+                        <div class="carousel-dots">
+                            <button
+                                class="carousel-dot active"
+                                onclick="goToSlide(0)"
+                            ></button>
+                            <button
+                                class="carousel-dot"
+                                onclick="goToSlide(1)"
+                            ></button>
+                            <button
+                                class="carousel-dot"
+                                onclick="goToSlide(2)"
+                            ></button>
+                            <button
+                                class="carousel-dot"
+                                onclick="goToSlide(3)"
+                            ></button>
+                            <button
+                                class="carousel-dot"
+                                onclick="goToSlide(4)"
+                            ></button>
+                            <button
+                                class="carousel-dot"
+                                onclick="goToSlide(5)"
+                            ></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Section -->
+        <section class="research-section">
+            <div class="container">
+                <div class="section-container">
+                    <h2 class="section-title">Research</h2>
+                    <div class="medium-embed">
+                        <h3>Latest from Medium</h3>
+                        <div
+                            class="medium-articles"
+                            id="medium-articles-container"
+                        >
+                            <!-- Medium articles will be loaded here via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="news-section">
+            <div class="container">
+                <div class="section-container">
+                    <h2 class="section-title">Featured News</h2>
+                    <div class="featured-container">
+                        <div class="news-list" id="news-container">
+                            <!-- News loads here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-grid">
+                        <div class="footer-col">
+                            <h4>About</h4>
+                            <ul>
+                                <li><a href="about.html">Our Firm</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>News</h4>
+                            <ul>
+                                <li><a href="news.html">Latest Updates</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Services</h4>
+                            <ul>
+                                <li>
+                                    <a href="services.html">Our Offerings</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Contact</h4>
+                            <ul>
+                                <li><a href="contact.html">Get in Touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        <p>&copy; 2025 LVRG PR. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Carousel functionality
+            let currentSlide = 0;
+            const totalSlides = 6;
+
+            function moveCarousel(direction) {
+                currentSlide += direction;
+
+                if (currentSlide >= totalSlides) {
+                    currentSlide = 0;
+                } else if (currentSlide < 0) {
+                    currentSlide = totalSlides - 1;
+                }
+
+                updateCarousel();
+            }
+
+            function goToSlide(slideIndex) {
+                currentSlide = slideIndex;
+                updateCarousel();
+            }
+
+            function updateCarousel() {
+                const track = document.getElementById("carousel-track");
+                const dots = document.querySelectorAll(".carousel-dot");
+
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle("active", index === currentSlide);
+                });
+            }
+
+            // Auto-advance carousel every 5 seconds
+            setInterval(() => {
+                moveCarousel(1);
+            }, 5000);
+
+            document.addEventListener("DOMContentLoaded", function () {
+                // Define containers first
+                const mediumContainer = document.getElementById(
+                    "medium-articles-container",
+                );
+                const newsContainer = document.getElementById("news-container");
+
+                // Load Medium articles
+                if (mediumContainer) {
+                    fetch(
+                        "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@lvrgpr",
+                    )
+                        .then((response) => {
+                            if (!response.ok)
+                                throw new Error("Network response was not ok");
+                            return response.json();
+                        })
+                        .then((data) => {
+                            if (data.items && data.items.length > 0) {
+                                const articlesHTML = data.items
+                                    .slice(0, 4)
+                                    .map((item) => {
+                                        let imageUrl = "";
+                                        const imgMatch = item.content.match(
+                                            /<img[^>]+src="([^">]+)"/,
+                                        );
+                                        if (imgMatch && imgMatch[1]) {
+                                            imageUrl = imgMatch[1];
+                                        }
+
+                                        const description =
+                                            item.description
+                                                .replace(/<[^>]*>?/gm, "")
+                                                .match(/[^.!?]*[.!?]/g)
+                                                ?.slice(0, 2)
+                                                .join(" ") ||
+                                            item.description.replace(
+                                                /<[^>]*>?/gm,
+                                                "",
+                                            );
+
+                                        return `
+                                <div class="medium-article">
+                                    ${imageUrl ? `<img src="${imageUrl}" class="medium-article-image" alt="${item.title}">` : ""}
+                                    <h3>${item.title}</h3>
+                                    <p>${description}</p>
+                                    <a href="${item.link}" target="_blank">Read more</a>
+                                </div>
+                            `;
+                                    })
+                                    .join("");
+                                mediumContainer.innerHTML = articlesHTML;
+                            } else {
+                                mediumContainer.innerHTML = `
+                            <div class="medium-article">
+                                <p>No articles found. Please visit our <a href="https://medium.com/@lvrgpr" target="_blank">Medium page</a>.</p>
+                            </div>
+                        `;
+                            }
+                        })
+                        .catch((error) => {
+                            console.error(
+                                "Error loading Medium articles:",
+                                error,
+                            );
+                            mediumContainer.innerHTML = `
+                        <div class="medium-article">
+                            <p>Unable to load Medium articles. Please visit our <a href="https://medium.com/@lvrgpr" target="_blank">Medium page</a> directly.</p>
+                        </div>
+                    `;
+                        });
+                }
+
+                // Load ALL news items
+                // Load news items with pagination
+                if (newsContainer) {
+                    fetch(
+                        "https://raw.githubusercontent.com/nickmimic/LVRGPR/main/all-news.json?nocache=" +
+                            Date.now(),
+                        {
+                            cache: "no-store",
+                            headers: {
+                                Accept: "application/json",
+                            },
+                        },
+                    )
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error(
+                                    `HTTP error! Status: ${response.status}`,
+                                );
+                            }
+                            return response.json();
+                        })
+                        .then((data) => {
+                            if (!data || !Array.isArray(data)) {
+                                throw new Error("Invalid data format");
+                            }
+
+                            // Create load more button
+                            const loadMoreBtn =
+                                document.createElement("button");
+                            loadMoreBtn.className = "load-more-btn";
+                            loadMoreBtn.textContent = "Load More";
+
+                            // Create container for button
+                            const loadMoreContainer =
+                                document.createElement("div");
+                            loadMoreContainer.className = "load-more-container";
+                            loadMoreContainer.appendChild(loadMoreBtn);
+                            document
+                                .querySelector(
+                                    ".news-section .section-container",
+                                )
+                                .appendChild(loadMoreContainer);
+
+                            // Initial display (first 10 items)
+                            const initialItems = data.slice(0, 10);
+                            let allItems = data;
+
+                            function renderNewsItems(items) {
+                                return items
+                                    .map(
+                                        (item) => `
+                <div class="news-item">
+                    <h3><a href="${item.url}" style="color: var(--white); text-decoration: none;">${item.title}</a></h3>
+                    ${item.date ? `<div class="date">${item.date}</div>` : ""}
+                </div>
+            `,
+                                    )
+                                    .join("");
+                            }
+
+                            newsContainer.innerHTML =
+                                renderNewsItems(initialItems);
+
+                            // Only show button if there are more items
+                            if (data.length > 10) {
+                                document
+                                    .querySelector(".featured-container")
+                                    .appendChild(loadMoreContainer);
+
+                                // Load more functionality
+                                loadMoreBtn.addEventListener(
+                                    "click",
+                                    function () {
+                                        // Append remaining items
+                                        newsContainer.innerHTML +=
+                                            renderNewsItems(allItems.slice(10));
+
+                                        // Remove button after loading all
+                                        loadMoreContainer.remove();
+                                    },
+                                );
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error loading news:", error);
+                            newsContainer.innerHTML = `
+            <div class="news-item error-message">
+                <h3>News Update</h3>
+                <p>Unable to load latest news. Please try again later.</p>
+                <p><small>Error: ${error.message}</small></p>
+            </div>
+        `;
+                        });
+                }
+            });
+        </script>
+    </body>
+</html>

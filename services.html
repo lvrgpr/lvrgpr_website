@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Services | LVRG PR</title>
+    <style>
+        /* Modern Financial Services CSS with Adjusted Color Scheme */
+        :root {
+            --dark-gray: #353535;        /* Used for borders and subtle accents */
+            --teal: #65c5d4;             /* Used for primary accents */
+            --white: #ffffff;            /* Used for text and highlights */
+            --light-gray: #ffffff;       /* Used for secondary backgrounds */
+            --purple-bg: #4a0d5f;        /* New purple background color */
+            --navy: #33133d;             /* Used for buttons and footer accents */
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: var(--white);         /* Changed to white text */
+            background-color: var(--purple-bg); /* New purple background */
+        }
+        h1, h2, h3, .logo {
+            font-weight: 700;
+            color: var(--white);         /* Changed to white headings */
+        }
+        .container {
+            width: 100%;
+            padding: 0 40px;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            background: var(--purple-bg); /* Purple background */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 36px;
+            font-family: 'Cinzel', serif;
+            color: var(--white);         /* White logo */
+            letter-spacing: 2px;
+            font-weight: 400; /* Reduced from default bold */
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 30px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white);        /* White navigation */
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--teal);          /* Teal hover */
+        }
+        
+        /* Hero Section - Full Width */
+        .hero {
+            background: var(--purple-bg); /* Purple background */
+            padding: 180px 0 100px;
+        }
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 64px;
+            color: var(--white);         /* White heading */
+            line-height: 1.1;
+            width: 100%;
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background: var(--purple-bg);
+        }
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: left;
+            margin-bottom: 50px;
+            color: var(--white);
+            font-size: 36px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        .service-item {
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--teal);
+        }
+        .service-item h3 {
+            color: var(--teal);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .service-item p {
+            color: var(--white);
+            line-height: 1.7;
+            opacity: 0.9;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--purple-bg);      /* Navy background */
+            color: var(--white);
+            padding: 80px 0 40px;
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .footer-col h4 {
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--white);           /* White heading */
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        .footer-col ul li a {
+            color: var(--light-gray);     /* Light gray links */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-col ul li a:hover {
+            color: var(--teal);           /* Teal hover */
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--teal); /* Teal border */
+            color: var(--light-gray);     /* Light gray text */
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 54px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 30px;
+            }
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 20px 0;
+            }
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav ul li {
+                margin: 0 15px 10px;
+            }
+            .hero {
+                padding: 140px 0 80px;
+            }
+            .hero h1 {
+                font-size: 38px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 30px;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">LVRG PR</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Services</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-container">
+                <h2 class="section-title">What We Offer</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <h3>PR Advisory</h3>
+                        <p>From building a strong foundation to reaching new heights in brand awareness, our advisory is rooted in first-hand experience and a rich understanding of the complex Web3 ecosystem.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Media Relations</h3>
+                        <p>For media relations strategy, we will focus on thought leadership and general media engagement.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Marketing Advisory</h3>
+                        <p>Our merged experiences from institutional and Web3 native work bolsters the insight from our marketing advisory strategies. We guide projects and partners to find more efficient approaches to generate leads, communicate with communities, develop meaningful content, and more.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>LVRG Research</h3>
+                        <p>Stemming from practical experience, we offer research and analysis best practices related to user experience analysis, customer acquisition strategies, network analysis, and foundational content designed for targeted customers and clients.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="about.html">Our Firm</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>News</h4>
+                        <ul>
+                            <li><a href="news.html">Latest Updates</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="services.html">Our Offerings</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="contact.html">Get in Touch</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 LVRG PR. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

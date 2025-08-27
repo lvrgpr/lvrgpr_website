@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <title>LVRG PR | Web3 Advisory</title>
+        <style>
+            /* Modern Financial Services CSS with Adjusted Color Scheme */
+            :root {
+                --dark-gray: #353535; /* Used for borders and subtle accents */
+                --teal: #65c5d4; /* Used for primary accents */
+                --white: #ffffff; /* Used for text and highlights */
+                --light-gray: #ffffff; /* Used for secondary backgrounds */
+                --purple-bg: #4a0d5f; /* New purple background color */
+                --navy: #33133d; /* Used for buttons and footer accents */
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+            body {
+                line-height: 1.6;
+                color: var(--white); /* Changed to white text */
+                background-color: var(--purple-bg); /* New purple background */
+            }
+            h1,
+            h2,
+            h3,
+            .logo {
+                font-weight: 700;
+                color: var(--white); /* Changed to white headings */
+            }
+            .container {
+                width: 100%;
+                padding: 0 40px;
+            }
+
+            /* Header */
+            header {
+                position: fixed;
+                width: 100%;
+                background: var(--purple-bg); /* Purple background */
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+            .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 80px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .logo {
+                font-size: 36px;
+                font-family: "Cinzel", serif;
+                color: var(--white); /* White logo */
+                letter-spacing: 2px;
+                font-weight: 400; /* Reduced from default bold */
+            }
+            nav ul {
+                display: flex;
+                list-style: none;
+            }
+            nav ul li {
+                margin-left: 30px;
+            }
+            nav ul li a {
+                text-decoration: none;
+                color: var(--white); /* White navigation */
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+            nav ul li a:hover {
+                color: var(--teal); /* Teal hover */
+            }
+
+            /* Hero Section - Full Width */
+            .hero {
+                background: var(--purple-bg); /* Purple background */
+                padding: 180px 0 100px;
+            }
+            .hero-content {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .hero h1 {
+                font-size: 64px;
+                color: var(--white); /* White heading */
+                line-height: 1.1;
+                width: 100%;
+            }
+
+            /* Featured News & Research Section */
+            .featured-section {
+                padding: 100px 0;
+                background: var(--light-gray); /* Light gray background */
+            }
+            .section-container {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .section-title {
+                text-align: left;
+                margin-bottom: 50px;
+                color: var(--purple-bg); /* Purple heading */
+                font-size: 36px;
+            }
+            .featured-container {
+                display: flex;
+                gap: 40px;
+            }
+            .news-list {
+                flex: 1;
+            }
+            .news-item {
+                padding: 25px 0;
+                border-bottom: 1px solid var(--teal); /* Teal border */
+            }
+            .news-item h3 {
+                color: var(--purple-bg); /* Purple heading */
+                margin-bottom: 10px;
+                font-size: 20px;
+            }
+            .news-item h3 a {
+                transition: color 0.3s ease;
+                color: var(--purple-bg);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            .news-item h3 a:hover {
+                color: var(--teal) !important; /* Force override */
+            }
+            .news-item p {
+                color: var(--dark-gray); /* Dark gray text */
+                font-size: 16px;
+                opacity: 0.9;
+            }
+            .news-item .date {
+                color: var(--teal); /* Teal date */
+                font-size: 14px;
+                margin-top: 8px;
+                font-weight: 500;
+            }
+
+            /* New Carousel Styles */
+            .carousel-container {
+                flex: 2;
+                position: relative;
+                min-height: 500px;
+                overflow: hidden;
+                border-radius: 8px;
+            }
+            .carousel-slide {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+                background-size: cover;
+                background-position: center;
+                display: block;
+                text-decoration: none;
+                cursor: pointer;
+                align-items: flex-end;
+            }
+            .carousel-slide.active {
+                opacity: 1;
+            }
+            .carousel-content {
+                background: rgba(
+                    74,
+                    13,
+                    95,
+                    0.7
+                ); /* 70% transparent purple overlay */
+                padding: 30px;
+                width: 100%;
+                height: 100%; /* Cover entire carousel */
+                color: white;
+                position: absolute;
+                top: 0;
+                left: 0;
+                pointer-events: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between; /* Distribute content */
+            }
+            .carousel-content h3 {
+                font-family: "Cinzel", serif; /* Cinzel font */
+                font-size: 40px;
+                font-weight: lighter;
+                margin: 0;
+                pointer-events: none;
+                align-self: flex-start; /* Top left positioning */
+            }
+            .carousel-content p {
+                font-size: 16px;
+                margin-bottom: 15px;
+                line-height: 1.5;
+                white-space: normal;
+                overflow: visible;
+                text-overflow: unset;
+                display: block;
+                -webkit-line-clamp: unset;
+                -webkit-box-orient: unset;
+                pointer-events: none;
+            }
+            .carousel-content a {
+                color: var(--teal);
+                text-decoration: none;
+                font-weight: 500;
+            }
+            .carousel-nav {
+                position: absolute;
+                top: 50%;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                transform: translateY(-50%);
+                z-index: 10;
+            }
+            .carousel-btn {
+                background: rgba(255, 255, 255, 0.3);
+                color: white;
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 20px;
+                cursor: pointer;
+                margin: 0 15px;
+                transition: all 0.3s;
+            }
+            .carousel-btn:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+            .carousel-indicators {
+                position: absolute;
+                bottom: 20px;
+                left: 0;
+                right: 0;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                z-index: 10;
+            }
+            .carousel-indicator {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.5);
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+            .carousel-indicator.active {
+                background: var(--teal);
+            }
+            .carousel-title {
+                font-size: 45px;
+                margin: 100px;
+                text-align: center;
+                pointer-events: none;
+                font-family:
+                    "Helvetica Neue", Helvetica, Arial, sans-serif; /* Not Cinzel */
+            }
+
+            .carousel-description {
+                font-size: 16px;
+                margin: 0;
+                line-height: 1.5;
+                pointer-events: none;
+                text-align: justify; /* Not centered */
+            }
+
+            /* 50/50 Text Section */
+            .text-section {
+                padding: 100px 0;
+                background: var(--purple-bg); /* Purple background */
+            }
+            .text-container {
+                display: flex;
+                gap: 60px;
+                align-items: center;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .large-text {
+                flex: 1;
+            }
+            .large-text h1 {
+                font-size: 48px;
+                color: var(--white); /* White heading */
+                line-height: 1.2;
+            }
+            .normal-text {
+                flex: 1;
+            }
+            .normal-text p {
+                margin-bottom: 20px;
+                font-size: 18px;
+                color: var(--white); /* White text */
+                line-height: 1.7;
+                opacity: 0.9;
+                text-align: justify;
+                text-justify: inter-word;
+            }
+
+            /* Services Section */
+            .services-section {
+                padding: 100px 0;
+                background: var(--light-gray); /* Light gray background */
+            }
+            .services-container {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .service-item {
+                padding: 40px;
+                background: var(--white);
+                border-radius: 8px;
+            }
+            .service-item h3 {
+                color: var(--purple-bg);
+                margin-bottom: 20px;
+                font-size: 24px;
+            }
+            .service-item p {
+                color: var(--dark-gray);
+                line-height: 1.7;
+                text-align: justify;
+                text-justify: inter-word;
+            }
+
+            /* Partners Section */
+            .partners-section {
+                padding: 100px 0;
+                background: var(--light-gray);
+            }
+            .partners-container {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .partners-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 60px;
+            }
+            .logos-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                align-items: center;
+            }
+            .logo-item {
+                background: var(--white);
+                height: 120px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+            .logo-item img {
+                max-width: 100%;
+                max-height: 80px;
+            }
+            .testimonial {
+                background: var(--white);
+                padding: 40px;
+                border-radius: 8px;
+            }
+            .testimonial p {
+                color: var(--dark-gray);
+                line-height: 1.7;
+                margin-bottom: 20px;
+                font-style: italic;
+                text-align: justify;
+                text-justify: inter-word;
+            }
+            .testimonial-author {
+                color: var(--purple-bg);
+                font-weight: 600;
+            }
+
+            /* Contact Section */
+            .contact-section {
+                padding: 100px 0;
+                background: var(--purple-bg); /* Purple background */
+                text-align: center;
+            }
+            .contact-container {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            .contact-section h2 {
+                font-size: 36px;
+                color: var(--white); /* White heading */
+                margin-bottom: 30px;
+            }
+            .contact-section p {
+                font-size: 18px;
+                color: var(--white); /* White text */
+                margin-bottom: 40px;
+                line-height: 1.7;
+                opacity: 0.9;
+            }
+            .contact-btn {
+                display: inline-block;
+                background: var(--navy); /* Navy button */
+                color: var(--white);
+                padding: 15px 40px;
+                border-radius: 4px;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 18px;
+                transition: background 0.3s;
+            }
+            .contact-btn:hover {
+                background: var(--teal); /* Teal hover */
+            }
+
+            /* Footer */
+            footer {
+                background: var(--purple-bg); /* Navy background */
+                color: var(--white);
+                padding: 80px 0 40px;
+            }
+            .footer-content {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .footer-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 60px;
+                margin-bottom: 60px;
+            }
+            .footer-col h4 {
+                margin-bottom: 25px;
+                font-weight: 600;
+                font-size: 18px;
+                color: var(--white); /* White heading */
+            }
+            .footer-col ul {
+                list-style: none;
+            }
+            .footer-col ul li {
+                margin-bottom: 12px;
+            }
+            .footer-col ul li a {
+                color: var(--light-gray); /* Light gray links */
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+            .footer-col ul li a:hover {
+                color: var(--teal); /* Teal hover */
+            }
+            .copyright {
+                text-align: center;
+                padding-top: 40px;
+                border-top: 1px solid var(--teal); /* Teal border */
+                color: var(--light-gray); /* Light gray text */
+            }
+
+            /* Responsive */
+            @media (max-width: 1024px) {
+                .hero h1 {
+                    font-size: 54px;
+                }
+                .featured-container {
+                    flex-direction: column;
+                }
+                .carousel-container {
+                    min-height: 400px;
+                }
+                .services-grid,
+                .partners-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    padding: 0 30px;
+                }
+                .header-container {
+                    flex-direction: column;
+                    height: auto;
+                    padding: 20px 0;
+                }
+                nav ul {
+                    margin-top: 20px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                nav ul li {
+                    margin: 0 15px 10px;
+                }
+                .hero {
+                    padding: 140px 0 80px;
+                }
+                .hero h1 {
+                    font-size: 38px;
+                }
+                .text-container {
+                    flex-direction: column;
+                }
+                .large-text h1 {
+                    font-size: 36px;
+                    margin-bottom: 30px;
+                }
+                .section-title {
+                    font-size: 30px;
+                }
+                .contact-section h2 {
+                    font-size: 30px;
+                }
+                .footer-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 40px;
+                }
+            }
+        </style>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="header-container">
+                    <div class="logo">LVRG PR</div>
+                    <nav>
+                        <ul>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="news.html">News</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>
+                        Serving the Global Web3 Community with Research-Based
+                        Advisory
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured News & Research Section -->
+        <section class="featured-section">
+            <div class="container">
+                <div class="section-container">
+                    <h2 class="section-title">Featured News & Research</h2>
+                    <div class="featured-container">
+                        <div class="news-list" id="news-container">
+                            <!-- News loads here -->
+                        </div>
+                        <div class="carousel-container" id="medium-carousel">
+                            <!-- Carousel slides will be inserted here by JavaScript -->
+                            <div class="carousel-nav">
+                                <button class="carousel-btn prev-btn">
+                                    &lt;
+                                </button>
+                                <button class="carousel-btn next-btn">
+                                    &gt;
+                                </button>
+                            </div>
+                            <div class="carousel-indicators"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section">
+            <div class="container">
+                <div class="services-container">
+                    <h2 class="section-title">Services</h2>
+                    <div class="services-grid">
+                        <div class="service-item">
+                            <h3>PR Advisory</h3>
+                            <p>
+                                From building a strong foundation to reaching
+                                new heights in brand awareness, our advisory is
+                                rooted in first-hand experience and a rich
+                                understanding of the complex Web3 ecosystem.
+                            </p>
+                        </div>
+                        <div class="service-item">
+                            <h3>Media Relations</h3>
+                            <p>
+                                For media relations strategy, we will focus on
+                                thought leadership and general media engagement.
+                            </p>
+                        </div>
+                        <div class="service-item">
+                            <h3>Marketing Advisory</h3>
+                            <p>
+                                Our merged experiences from institutional and
+                                Web3 native work bolsters the insight from our
+                                marketing advisory strategies. We guide projects
+                                and partners to find more efficient approaches
+                                to generate leads, communicate with communities,
+                                develop meaningful content, and more.
+                            </p>
+                        </div>
+                        <div class="service-item">
+                            <h3>LVRG Research</h3>
+                            <p>
+                                Stemming from practical experience, we offer
+                                research and analysis best practices related to
+                                user experience analysis, customer acquisition
+                                strategies, network analysis, and foundational
+                                content designed for targeted customers and
+                                clients.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="text-section">
+            <div class="container">
+                <div class="text-container">
+                    <div class="large-text">
+                        <h1>About Us</h1>
+                    </div>
+                    <div class="normal-text">
+                        <p>
+                            LVRG PR is established to be the next gen strategic
+                            communications and advisory house focused on
+                            building and enhancing brands in Web3. We bring our
+                            first-hand experiences in working with Web3 startups
+                            and help them achieve their business goals and most
+                            importantly amplifying their brand awareness in both
+                            Web3 and mainstream business space.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Global Partners Section -->
+        <section class="partners-section">
+            <div class="container">
+                <div class="partners-container">
+                    <h2 class="section-title">Global Partners</h2>
+                    <div class="partners-grid">
+                        <div class="logos-grid">
+                            <div class="logo-item">
+                                <img
+                                    src="https://static.wixstatic.com/media/f81c05_c0b1951f49e343708a699239c1a3294d~mv2.png/v1/fill/w_267,h_82,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/GLOBAL-%E5%B8%B8%E8%A7%84.png"
+                                    alt="Partner Logo"
+                                />
+                            </div>
+                            <div class="logo-item">
+                                <img
+                                    src="https://static.wixstatic.com/media/f81c05_5cf32024aaa0431584b4645782ece3d2~mv2.png/v1/fill/w_263,h_82,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/OTC-%E5%B8%B8%E8%A7%84.png"
+                                    alt="Partner Logo"
+                                />
+                            </div>
+                            <div class="logo-item">
+                                <img
+                                    src="https://static.wixstatic.com/media/f81c05_6d9265905844482aa9d6aefc24dea8e8~mv2.png/v1/fill/w_270,h_82,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPITAL.png"
+                                    alt="Partner Logo"
+                                />
+                            </div>
+                            <div class="logo-item">
+                                <img
+                                    src="https://static.wixstatic.com/media/f81c05_c9e7422bdf1d422f8e18d8835332fa0d~mv2.png/v1/fill/w_264,h_82,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/EXCHANGE.png"
+                                    alt="Partner Logo"
+                                />
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <p>
+                                As a Web3-focused PR agency with strong research
+                                capabilities, LVRG PR has been a valuable
+                                partner in securing high-impact media coverage
+                                and amplifying our thought leadership,
+                                especially for HashKey OTC Global. Their deep
+                                industry expertise and strategic approach have
+                                contributed significantly to our outreach
+                                efforts, ensuring clarity and impact in a
+                                complex and rapidly changing environment. Their
+                                professionalism and dedication have earned
+                                praise across our teams, making them a trusted
+                                partner in our growth journey. We highly
+                                recommend their services to any Web3 enterprise
+                                seeking high-quality, results-driven PR support.
+                            </p>
+                            <div class="testimonial-author">
+                                Emma Li, PR Director, HashKey Group
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-container">
+                    <h2>Connect With Us</h2>
+                    <p>
+                        We welcome the opportunity to discuss how we can help
+                        you achieve your financial goals. Reach out to our team
+                        for more information.
+                    </p>
+                    <a
+                        href="mailto:info@lvrgpr.org?subject=LVRG%20PR%20Contact&amp;body=Please%20enter%20your%20message%20here"
+                        class="contact-btn"
+                        >Contact Us</a
+                    >
+
+                    <div
+                        class="social-icons"
+                        style="
+                            margin-top: 30px;
+                            display: flex;
+                            justify-content: center;
+                            gap: 20px;
+                        "
+                    >
+                        <a
+                            href="https://twitter.com/LVRGPR"
+                            target="_blank"
+                            style="color: var(--white)"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                                />
+                            </svg>
+                        </a>
+                        <a
+                            href="https://linkedin.com/company/lvrg-pr/"
+                            target="_blank"
+                            style="color: var(--white)"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                />
+                            </svg>
+                        </a>
+                        <a
+                            href="https://medium.com/@lvrgpr"
+                            target="_blank"
+                            style="color: var(--white)"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M22 0h-20v24h20v-24zm-3.543 5.186v1.067h-.896c-.629 0-.754.315-.754.649v8.416c0 .334.125.649.754.649h.896v1.067h-4.562v-1.067h1.672v-9.65h-.05l-2.402 9.65h-.934l-2.368-9.65h-.064v9.65h1.672v1.067h-4.519v-1.067h.925c.629 0 .754-.315.754-.649v-8.416c0-.334-.125-.649-.754-.649h-.925v-1.067h6.666l1.771 7.886h.05l1.787-7.886h6.506z"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-grid">
+                        <div class="footer-col">
+                            <h4>About</h4>
+                            <ul>
+                                <li><a href="about.html">Our Firm</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>News</h4>
+                            <ul>
+                                <li><a href="news.html">Latest Updates</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Services</h4>
+                            <ul>
+                                <li>
+                                    <a href="services.html">Our Offerings</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Contact</h4>
+                            <ul>
+                                <li><a href="contact.html">Get in Touch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        <p>&copy; 2025 LVRG PR. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Debug version - keep this in until we confirm it works
+            console.log("Starting news fetch...");
+
+            fetch(
+                "https://raw.githubusercontent.com/nickmimic/LVRGPR/main/news.json?nocache=" +
+                    Date.now(),
+                {
+                    cache: "no-store",
+                    headers: {
+                        Accept: "application/json",
+                    },
+                },
+            )
+                .then((response) => {
+                    console.log("Received response, status:", response.status);
+                    if (!response.ok) {
+                        throw new Error(
+                            `HTTP error! Status: ${response.status}`,
+                        );
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log("Successfully parsed JSON:", data);
+                    if (!data || !Array.isArray(data)) {
+                        throw new Error("Invalid data format");
+                    }
+
+                    const newsHTML = data
+                        .map(
+                            (item) => `
+      <div class="news-item">
+        <h3><a href="${item.url}" style="color: var(--navy); text-decoration: none;">${item.title}</a></h3>
+      </div>
+    `,
+                        )
+                        .join("");
+
+                    document.getElementById("news-container").innerHTML =
+                        newsHTML;
+                })
+                .catch((error) => {
+                    console.error("Full error details:", error);
+                    document.getElementById("news-container").innerHTML = `
+      <div class="news-item error-message">
+        <h3>News Update</h3>
+        <p>Unable to load latest news. Please try again later.</p>
+        <p><small>Error: ${error.message}</small></p>
+      </div>
+    `;
+                });
+
+            // Load Medium articles for carousel
+            document.addEventListener("DOMContentLoaded", function () {
+                const carouselContainer =
+                    document.getElementById("medium-carousel");
+                const indicatorsContainer = document.querySelector(
+                    ".carousel-indicators",
+                );
+
+                if (carouselContainer) {
+                    fetch(
+                        "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@lvrgpr",
+                    )
+                        .then((response) => {
+                            if (!response.ok)
+                                throw new Error("Network response was not ok");
+                            return response.json();
+                        })
+                        .then((data) => {
+                            if (data.items && data.items.length > 0) {
+                                // Create carousel slides
+                                // In the Medium articles fetch .then() block, update the slidesHTML generation:
+                                const slidesHTML = data.items
+                                    .slice(0, 5)
+                                    .map((item, index) => {
+                                        let imageUrl = "";
+                                        const imgMatch = item.content.match(
+                                            /<img[^>]+src="([^">]+)"/,
+                                        );
+                                        if (imgMatch && imgMatch[1]) {
+                                            imageUrl = imgMatch[1];
+                                        }
+
+                                        // Get first two sentences
+                                        const sentences = item.description
+                                            .replace(/<[^>]*>?/gm, "")
+                                            .split(".")
+                                            .filter((s) => s.trim().length > 0);
+                                        const description =
+                                            sentences.length > 1
+                                                ? `${sentences[0]}. ${sentences[1]}.`
+                                                : `${sentences[0]}.`;
+
+                                        return `
+                                            <a href="${item.link}" target="_blank" class="carousel-slide ${index === 0 ? "active" : ""}"
+                                                 style="${imageUrl ? `background-image: url('${imageUrl}')` : "background-color: var(--teal)"}">
+                                                <div class="carousel-content">
+                                                    <h3>LVRG Research</h3>
+                                                    <div class="carousel-title">${item.title}</div>
+                                                    <p class="carousel-description">${description}</p>
+                                                </div>
+                                            </a>
+                                        `;
+                                    })
+                                    .join("");
+
+                                carouselContainer.insertAdjacentHTML(
+                                    "afterbegin",
+                                    slidesHTML,
+                                );
+
+                                // Create indicators
+                                const indicatorsHTML = data.items
+                                    .slice(0, 5)
+                                    .map((_, index) => {
+                                        return `<div class="carousel-indicator ${index === 0 ? "active" : ""}" data-index="${index}"></div>`;
+                                    })
+                                    .join("");
+
+                                indicatorsContainer.innerHTML = indicatorsHTML;
+
+                                // Initialize carousel functionality
+                                initCarousel();
+                            } else {
+                                carouselContainer.innerHTML = `
+                                    <div class="carousel-slide active" style="background-color: var(--teal)">
+                                        <div class="carousel-content">
+                                            <h3>Latest Articles</h3>
+                                            <p>Visit our Medium page for the latest research and insights.</p>
+                                            <a href="https://medium.com/@lvrgpr" target="_blank">Visit Medium</a>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        })
+                        .catch((error) => {
+                            console.error(
+                                "Error loading Medium articles:",
+                                error,
+                            );
+                            carouselContainer.innerHTML = `
+                                <div class="carousel-slide active" style="background-color: var(--teal)">
+                                    <div class="carousel-content">
+                                        <h3>Latest Articles</h3>
+                                        <p>Unable to load articles. Please visit our Medium page directly.</p>
+                                        <a href="https://medium.com/@lvrgpr" target="_blank">Visit Medium</a>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                }
+
+                function initCarousel() {
+                    const slides = document.querySelectorAll(".carousel-slide");
+                    const indicators = document.querySelectorAll(
+                        ".carousel-indicator",
+                    );
+                    const prevBtn = document.querySelector(".prev-btn");
+                    const nextBtn = document.querySelector(".next-btn");
+                    let currentIndex = 0;
+
+                    function showSlide(index) {
+                        slides.forEach((slide, i) => {
+                            slide.classList.toggle("active", i === index);
+                        });
+
+                        indicators.forEach((indicator, i) => {
+                            indicator.classList.toggle("active", i === index);
+                        });
+
+                        currentIndex = index;
+                    }
+
+                    function nextSlide() {
+                        const newIndex = (currentIndex + 1) % slides.length;
+                        showSlide(newIndex);
+                    }
+
+                    function prevSlide() {
+                        const newIndex =
+                            (currentIndex - 1 + slides.length) % slides.length;
+                        showSlide(newIndex);
+                    }
+
+                    // Button events
+                    nextBtn.addEventListener("click", nextSlide);
+                    prevBtn.addEventListener("click", prevSlide);
+
+                    // Indicator events
+                    indicators.forEach((indicator) => {
+                        indicator.addEventListener("click", () => {
+                            const index = parseInt(
+                                indicator.getAttribute("data-index"),
+                            );
+                            showSlide(index);
+                        });
+                    });
+
+                    // Auto-rotate every 5 seconds
+                    let interval = setInterval(nextSlide, 5000);
+
+                    // Pause on hover
+                    carouselContainer.addEventListener("mouseenter", () => {
+                        clearInterval(interval);
+                    });
+
+                    carouselContainer.addEventListener("mouseleave", () => {
+                        interval = setInterval(nextSlide, 5000);
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
