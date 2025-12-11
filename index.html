@@ -278,6 +278,93 @@
                 text-align: justify; /* Not centered */
             }
 
+            /* As Seen On Section */
+            .as-seen-on-section {
+                padding: 80px 0;
+                background: var(--purple-bg);
+                overflow: hidden;
+            }
+            .as-seen-on-container {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .as-seen-on-section .section-title {
+                color: var(--white);
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            .ticker-wrapper {
+                overflow: hidden;
+                position: relative;
+                width: 100%;
+            }
+            .ticker-content {
+                display: flex;
+                gap: 80px;
+                animation: scroll 30s linear infinite;
+                width: fit-content;
+            }
+            .ticker-content img {
+                height: 60px;
+                width: auto;
+                object-fit: contain;
+                filter: brightness(0) invert(1);
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+            .ticker-content img:hover {
+                opacity: 1;
+            }
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+
+            /* Featured Stories Section */
+            .featured-stories-section {
+                padding: 100px 0;
+                background: var(--light-gray);
+            }
+            .featured-stories-container {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .stories-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+            .story-card {
+                background: var(--white);
+                padding: 40px;
+                border-radius: 8px;
+                display: flex;
+                flex-direction: column;
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            .story-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            .story-logo {
+                height: 40px;
+                margin-bottom: 25px;
+                object-fit: contain;
+                align-self: flex-start;
+            }
+            .story-quote {
+                color: var(--dark-gray);
+                font-size: 18px;
+                line-height: 1.6;
+                font-style: italic;
+                text-align: justify;
+            }
+
+
             /* 50/50 Text Section */
             .text-section {
                 padding: 100px 0;
@@ -488,6 +575,9 @@
                 .partners-grid {
                     grid-template-columns: 1fr;
                 }
+                .stories-grid {
+                    grid-template-columns: 1fr;
+                }
             }
 
             @media (max-width: 768px) {
@@ -525,6 +615,9 @@
                 }
                 .contact-section h2 {
                     font-size: 30px;
+                }
+                .ticker-content img {
+                    height: 40px;
                 }
                 .footer-grid {
                     grid-template-columns: repeat(2, 1fr);
@@ -594,6 +687,33 @@
             </div>
         </section>
 
+        <!-- As Seen On Section -->
+        <section class="as-seen-on-section">
+            <div class="container">
+                <div class="as-seen-on-container">
+                    <h2 class="section-title">As Seen On</h2>
+                    <div class="ticker-wrapper">
+                        <div class="ticker-content">
+                            <img src="bloomberg.png" alt="Bloomberg">
+                            <img src="scmp.PNG" alt="SCMP">
+                            <img src="reuters.png" alt="Reuters">
+                            <img src="coindesk.png" alt="CoinDesk">
+                            <img src="theblock.png" alt="The Block">
+                            <img src="cointelegraph.png" alt="Cointelegraph">
+                            <!-- Duplicate for seamless loop -->
+                            <img src="bloomberg.png" alt="Bloomberg">
+                            <img src="scmp.PNG" alt="SCMP">
+                            <img src="reuters.png" alt="Reuters">
+                            <img src="coindesk.png" alt="CoinDesk">
+                            <img src="theblock.png" alt="The Block">
+                            <img src="cointelegraph.png" alt="Cointelegraph">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <!-- Services Section -->
         <section class="services-section">
             <div class="container">
@@ -637,6 +757,19 @@
                 </div>
             </div>
         </section>
+
+        <!-- Featured Stories Section -->
+        <section class="featured-stories-section">
+            <div class="container">
+                <div class="featured-stories-container">
+                    <h2 class="section-title">Featured Stories</h2>
+                    <div class="stories-grid" id="stories-grid">
+                        <!-- Stories will be rotated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- About Us Section -->
         <section class="text-section">
@@ -1051,6 +1184,72 @@
                     });
                 }
             });
+
+            // Featured Stories rotation
+            const stories = [
+                {
+                    logo: "bloomberg.png",
+                    link: "https://www.bloomberg.com/news/articles/2025-10-30/bitcoin-btc-extends-losses-as-powell-cautions-against-rate-cut-bets?srnd=undefined",
+                    quote: "Powell's tone caught traders off-guard and erased recent gains. Bitcoin traders should look for support at $107,000 and $100,000 as key downside levels."
+                },
+                {
+                    logo: "scmp.PNG",
+                    link: "https://www.scmp.com/tech/tech-trends/article/3328141/bitcoin-bnb-hit-record-highs-global-turmoil-spurs-flight-safe-haven-crypto",
+                    quote: "Bitcoin's surge signals its role as a hedge against fiscal uncertainty, as the US government shutdown wavers confidence in safe assets."
+                },
+                {
+                    logo: "reuters.png",
+                    link: "https://www.reuters.com/business/retail-consumer/major-shift-shanghai-regulator-mulls-policy-responses-stablecoins-2025-07-11/",
+                    quote: "Given China's strong fintech ecosystem, it has the potential to be a key player in shaping the future of blockchain-based payments."
+                },
+                {
+                    logo: "coindesk.png",
+                    link: "https://www.coindesk.com/markets/2025/10/01/traders-eye-september-jobs-report-for-cues-on-bitcoin-breakout-above-usd120k",
+                    quote: "The crypto market is at a macroeconomic crossroads, caught between a softening labor market and resilient economic growth."
+                },
+                {
+                    logo: "theblock.png",
+                    link: "https://www.theblock.co/post/376192/bitcoin-150000-short-liquidations",
+                    quote: "Given the historical precedent of the Santa Rally, we anticipate a continuation of bullish momentum leading up to year-end, particularly following the 2024 halving cycle."
+                },
+                {
+                    logo: "cointelegraph.png",
+                    link: "https://cointelegraph.com/news/bitcoin-etfs-take-share-spot-trading-volume",
+                    quote: "Current flow dynamics show ETFs are not just supplementing but actively reshaping spot market liquidity, with their trading activity increasingly correlated with underlying BTC price movements."
+                }
+            ];
+
+            let currentStoryIndex = 0;
+
+            function showStories(startIndex) {
+                const storiesGrid = document.getElementById('stories-grid');
+                const storiesToShow = [];
+                
+                for (let i = 0; i < 3; i++) {
+                    const index = (startIndex + i) % stories.length;
+                    storiesToShow.push(stories[index]);
+                }
+
+                storiesGrid.innerHTML = storiesToShow.map(story => `
+                    <a href="${story.link}" target="_blank" class="story-card" style="text-decoration: none;">
+                        <img src="${story.logo}" alt="Media Logo" class="story-logo">
+                        <p class="story-quote">"${story.quote}"</p>
+                    </a>
+                `).join('');
+            }
+
+            function rotateStories() {
+                currentStoryIndex = (currentStoryIndex + 3) % stories.length;
+                showStories(currentStoryIndex);
+            }
+
+            // Initialize stories
+            if (document.getElementById('stories-grid')) {
+                showStories(0);
+                setInterval(rotateStories, 7000); // Rotate every 7 seconds
+            }
+
+
         </script>
     </body>
 </html>
