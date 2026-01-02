@@ -504,6 +504,89 @@
                 color: var(--purple-bg);
                 font-weight: 600;
             }
+            .testimonial-carousel-container {
+    position: relative;
+    min-height: 500px;
+    overflow: hidden;
+    border-radius: 8px;
+    padding-bottom: 50px; /* Add space for indicators */
+}
+
+.testimonial-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 50px); /* Account for indicator space */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 0 60px; /* Add padding to prevent overlap with buttons */
+}
+
+.testimonial-slide.active {
+    opacity: 1;
+}
+
+.testimonial-carousel-container .testimonial {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.testimonial-carousel-container .testimonial p {
+    color: var(--dark-gray);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 15px; /* Reduced from default to fit text */
+    flex: 1;
+}
+
+.testimonial-carousel-container .testimonial-author {
+    color: var(--purple-bg);
+    font-weight: 600;
+    font-size: 14px; /* Slightly smaller */
+}
+
+.testimonial-carousel-container .carousel-btn {
+    background: var(--purple-bg);
+    color: white;
+    border: 2px solid var(--teal);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.testimonial-carousel-container .carousel-btn:hover {
+    background: var(--teal);
+    border-color: var(--teal);
+}
+
+.testimonial-carousel-container .carousel-indicators {
+    bottom: 10px;
+    position: absolute;
+}
+
+.testimonial-carousel-container .carousel-indicator {
+    background: var(--purple-bg);
+    border: 2px solid var(--teal);
+}
+
+.testimonial-carousel-container .carousel-indicator.active {
+    background: var(--teal);
+}
+
 
             /* Success Section */
             .success-section {
@@ -922,7 +1005,7 @@
             </div>
         </section>
 
-        <!-- Global Partners Section -->
+<!-- Global Partners Section -->
 <section class="partners-section">
     <div class="container">
         <div class="partners-container">
@@ -960,25 +1043,30 @@
                         />
                     </div>
                 </div>
-                <div class="testimonial">
-                    <p>
-                        As a Web3-focused PR agency with strong research
-                        capabilities, LVRG PR has been a valuable
-                        partner in securing high-impact media coverage
-                        and amplifying our thought leadership,
-                        especially for HashKey OTC Global. Their deep
-                        industry expertise and strategic approach have
-                        contributed significantly to our outreach
-                        efforts, ensuring clarity and impact in a
-                        complex and rapidly changing environment. Their
-                        professionalism and dedication have earned
-                        praise across our teams, making them a trusted
-                        partner in our growth journey. We highly
-                        recommend their services to any Web3 enterprise
-                        seeking high-quality, results-driven PR support.
-                    </p>
-                    <div class="testimonial-author">
-                        Emma Li, PR Director, HashKey Group
+                <div class="testimonial-carousel-container" id="testimonial-carousel">
+                    <div class="testimonial-slide active">
+                        <div class="testimonial">
+                            <p>
+                                As a Web3-focused PR agency with strong research capabilities, LVRG PR has been a valuable partner in securing high-impact media coverage and amplifying our thought leadership, especially for HashKey OTC Global. Their deep industry expertise and strategic approach have contributed significantly to our outreach efforts, ensuring clarity and impact in a complex and rapidly changing environment. Their professionalism and dedication have earned praise across our teams, making them a trusted partner in our growth journey. We highly recommend their services to any Web3 enterprise seeking high-quality, results-driven PR support.
+                            </p>
+                            <div class="testimonial-author">
+                                Emma Li, PR Director, HashKey Group
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial">
+                            <p>
+                                Yiwei and his team at LVRG PR have been highly collaborative & resourceful in securing reputable media coverage for the digital assets industry. Their efforts have strengthened credibility to the sector by enabling insightful, two-way dialogue between media editors and our research team, fostering a communicative environment with mutual trust and respect. We are grateful for their outreach efforts during our growth journey, and recommend their services to our industry peers and partners.
+                            </p>
+                            <div class="testimonial-author">
+                                Augustine Fan, CFO & Partner
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-btn testimonial-prev-btn">&lt;</button>
+                        <button class="carousel-btn testimonial-next-btn">&gt;</button>
                     </div>
                 </div>
             </div>
@@ -1340,6 +1428,72 @@
                     });
                 }
             });
+
+
+
+
+// Testimonial Carousel
+function initTestimonialCarousel() {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const indicators = document.querySelectorAll('.testimonial-indicators .carousel-indicator');
+    const prevBtn = document.querySelector('.testimonial-prev-btn');
+    const nextBtn = document.querySelector('.testimonial-next-btn');
+    const carouselContainer = document.getElementById('testimonial-carousel');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === index);
+        });
+
+        currentIndex = index;
+    }
+
+    function nextSlide() {
+        const newIndex = (currentIndex + 1) % slides.length;
+        showSlide(newIndex);
+    }
+
+    function prevSlide() {
+        const newIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(newIndex);
+    }
+
+    // Button events
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    // Indicator events
+    indicators.forEach((indicator) => {
+        indicator.addEventListener('click', () => {
+            const index = parseInt(indicator.getAttribute('data-index'));
+            showSlide(index);
+        });
+    });
+
+    // Auto-rotate every 7 seconds
+    let interval = setInterval(nextSlide, 7000);
+
+    // Pause on hover
+    carouselContainer.addEventListener('mouseenter', () => {
+        clearInterval(interval);
+    });
+
+    carouselContainer.addEventListener('mouseleave', () => {
+        interval = setInterval(nextSlide, 7000);
+    });
+}
+
+// Initialize testimonial carousel when page loads
+document.addEventListener('DOMContentLoaded', initTestimonialCarousel);
+
+
+
+
 
 
 
