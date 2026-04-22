@@ -80,7 +80,7 @@
 
             /* Hero Section - Full Width */
             .hero {
-                background: var(--purple-bg); /* Purple background */
+                background: url('star.png') center center / cover no-repeat;
                 padding: 180px 0 100px;
             }
             .hero-content {
@@ -427,7 +427,7 @@
             /* Services Section */
             .services-section {
                 padding: 100px 0;
-                background: var(--light-gray); /* Light gray background */
+                background: url('star.png') center center / cover no-repeat;
             }
             .services-container {
                 max-width: 1400px;
@@ -440,16 +440,16 @@
             }
             .service-item {
                 padding: 40px;
-                background: var(--white);
+                background: transparent;
                 border-radius: 8px;
             }
             .service-item h3 {
-                color: var(--purple-bg);
+                color: var(--white);
                 margin-bottom: 20px;
                 font-size: 24px;
             }
             .service-item p {
-                color: var(--dark-gray);
+                color: var(--white);
                 line-height: 1.7;
                 text-align: justify;
                 text-justify: inter-word;
@@ -1036,7 +1036,7 @@
         <section class="services-section">
             <div class="container">
                 <div class="services-container">
-                    <h2 class="section-title">Services</h2>
+                    <h2 class="section-title" style="color: white;">Services</h2>
                     <div class="services-grid">
                         <div class="service-item">
                             <h3>PR Advisory</h3>
@@ -1744,7 +1744,7 @@
                                 // Create carousel slides
                                 // In the Medium articles fetch .then() block, update the slidesHTML generation:
                                 const slidesHTML = data.items
-                                    .slice(0, 5)
+                                    .slice(0, 3)
                                     .map((item, index) => {
                                         // Get first two sentences
                                         const sentences = item.description
@@ -1781,7 +1781,7 @@
 
                                 // Create indicators
                                 const indicatorsHTML = data.items
-                                    .slice(0, 5)
+                                    .slice(0, 3)
                                     .map((_, index) => {
                                         return `<div class="carousel-indicator ${index === 0 ? "active" : ""}" data-index="${index}"></div>`;
                                     })
