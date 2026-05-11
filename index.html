@@ -77,10 +77,41 @@
             nav ul li a:hover {
                 color: var(--teal); /* Teal hover */
             }
+            .nav-dropdown {
+  position: relative;
+}
+.nav-dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--purple-bg);
+  border-top: 2px solid var(--teal);
+  padding: 8px 0;
+  min-width: 140px;
+  list-style: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
+.nav-dropdown .dropdown-menu li {
+  margin: 0;
+}
+.nav-dropdown .dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: var(--white);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.nav-dropdown .dropdown-menu li a:hover {
+  color: var(--teal);
+}
 
             /* Hero Section - Full Width */
             .hero {
-                background: url('star.png') center center / cover no-repeat;
+                background: url('image/star.png') center center / cover no-repeat;
                 padding: 180px 0 100px;
             }
             .hero-content {
@@ -427,7 +458,7 @@
             /* Services Section */
             .services-section {
                 padding: 100px 0;
-                background: url('star.png') center center / cover no-repeat;
+                background: url('image/star.png') center center / cover no-repeat;
             }
             .services-container {
                 max-width: 1400px;
@@ -630,11 +661,13 @@
             }
 
             .article-image {
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            }
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
 
             .article-content {
                 padding: 20px;
@@ -961,6 +994,12 @@
                             <li><a href="about.html">About</a></li>
                             <li><a href="news.html">News</a></li>
                             <li><a href="services.html">Services</a></li>
+                            <li class="nav-dropdown">
+  <a href="#">Research</a>
+  <ul class="dropdown-menu">
+    <li><a href="/studio">Studio</a></li>
+  </ul>
+</li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </nav>
@@ -1013,19 +1052,19 @@
                     <h2 class="section-title">As Seen On</h2>
                     <div class="ticker-wrapper">
                         <div class="ticker-content">
-                            <img src="bloomberg.png" alt="Bloomberg" />
-                            <img src="scmp.PNG" alt="SCMP" />
-                            <img src="reuters.png" alt="Reuters" />
-                            <img src="coindesk.png" alt="CoinDesk" />
-                            <img src="theblock.png" alt="The Block" />
-                            <img src="cointelegraph.png" alt="Cointelegraph" />
+                            <img src="image/bloomberg.png" alt="Bloomberg" />
+                            <img src="image/scmp.PNG" alt="SCMP" />
+                            <img src="image/reuters.png" alt="Reuters" />
+                            <img src="image/coindesk.png" alt="CoinDesk" />
+                            <img src="image/theblock.png" alt="The Block" />
+                            <img src="image/cointelegraph.png" alt="Cointelegraph" />
                             <!-- Duplicate for seamless loop -->
-                            <img src="bloomberg.png" alt="Bloomberg" />
-                            <img src="scmp.PNG" alt="SCMP" />
-                            <img src="reuters.png" alt="Reuters" />
-                            <img src="coindesk.png" alt="CoinDesk" />
-                            <img src="theblock.png" alt="The Block" />
-                            <img src="cointelegraph.png" alt="Cointelegraph" />
+                            <img src="image/bloomberg.png" alt="Bloomberg" />
+                            <img src="image/scmp.PNG" alt="SCMP" />
+                            <img src="image/reuters.png" alt="Reuters" />
+                            <img src="image/coindesk.png" alt="CoinDesk" />
+                            <img src="image/theblock.png" alt="The Block" />
+                            <img src="image/cointelegraph.png" alt="Cointelegraph" />
                         </div>
                     </div>
                 </div>
@@ -1067,12 +1106,9 @@
                         <div class="service-item">
                             <h3>LVRG Research</h3>
                             <p>
-                                Stemming from practical experience, we offer
-                                research and analysis best practices related to
-                                user experience analysis, customer acquisition
-                                strategies, network analysis, and foundational
-                                content designed for targeted customers and
-                                clients.
+                                Stemming from practical experience, we offer 
+                                research and analysis focusing on the intersection 
+                                of Web3 and traditional finance.
                             </p>
                         </div>
                     </div>
@@ -1094,7 +1130,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="bloomberg.png"
+                                    src="image/bloomberg.png"
                                     alt="Bloomberg"
                                     class="story-logo-scroll"
                                 />
@@ -1111,7 +1147,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="scmp.PNG"
+                                    src="image/scmp.PNG"
                                     alt="SCMP"
                                     class="story-logo-scroll"
                                 />
@@ -1128,7 +1164,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="reuters.png"
+                                    src="image/reuters.png"
                                     alt="Reuters"
                                     class="story-logo-scroll"
                                 />
@@ -1145,7 +1181,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="coindesk.png"
+                                    src="image/coindesk.png"
                                     alt="CoinDesk"
                                     class="story-logo-scroll"
                                 />
@@ -1161,7 +1197,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="theblock.png"
+                                    src="image/theblock.png"
                                     alt="The Block"
                                     class="story-logo-scroll"
                                 />
@@ -1179,7 +1215,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="cointelegraph.png"
+                                    src="image/cointelegraph.png"
                                     alt="Cointelegraph"
                                     class="story-logo-scroll"
                                 />
@@ -1198,7 +1234,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="bloomberg.png"
+                                    src="image/bloomberg.png"
                                     alt="Bloomberg"
                                     class="story-logo-scroll"
                                 />
@@ -1215,7 +1251,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="scmp.PNG"
+                                    src="image/scmp.PNG"
                                     alt="SCMP"
                                     class="story-logo-scroll"
                                 />
@@ -1232,7 +1268,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="reuters.png"
+                                    src="image/reuters.png"
                                     alt="Reuters"
                                     class="story-logo-scroll"
                                 />
@@ -1249,7 +1285,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="coindesk.png"
+                                    src="image/coindesk.png"
                                     alt="CoinDesk"
                                     class="story-logo-scroll"
                                 />
@@ -1265,7 +1301,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="theblock.png"
+                                    src="image/theblock.png"
                                     alt="The Block"
                                     class="story-logo-scroll"
                                 />
@@ -1283,7 +1319,7 @@
                                 class="story-card-scroll"
                             >
                                 <img
-                                    src="cointelegraph.png"
+                                    src="image/cointelegraph.png"
                                     alt="Cointelegraph"
                                     class="story-logo-scroll"
                                 />
@@ -1331,25 +1367,25 @@
                     <div class="partners-grid">
                         <div class="logos-grid">
                             <div class="logo-item">
-                                <img src="hashkey.png" alt="HashKey Logo" />
+                                <img src="image/hashkey.png" alt="HashKey Logo" />
                             </div>
                             <div class="logo-item">
-                                <img src="coinw.PNG" alt="CoinW Logo" />
+                                <img src="image/coinw.PNG" alt="CoinW Logo" />
                             </div>
                             <div class="logo-item">
                                 <img
-                                    src="signalplus.JPG"
+                                    src="image/signalplus.JPG"
                                     alt="SignalPlus Logo"
                                 />
                             </div>
                             <div class="logo-item">
-                                <img src="osl.png" alt="OSL Logo" />
+                                <img src="image/osl.png" alt="OSL Logo" />
                             </div>
                             <div class="logo-item">
-                                <img src="coinex.png" alt="CoinEx Logo" />
+                                <img src="image/coinex.png" alt="CoinEx Logo" />
                             </div>
                             <div class="logo-item">
-                                <img src="bitrue.png" alt="Bitrue Logo" />
+                                <img src="image/bitrue.png" alt="Bitrue Logo" />
                             </div>
                         </div>
                         <div
@@ -1748,18 +1784,28 @@
                                     .map((item, index) => {
                                         // Get first two sentences
                                         const sentences = item.description
-                                            .replace(/<[^>]*>?/gm, "")
-                                            .split(".")
-                                            .filter((s) => s.trim().length > 0);
-                                        const description =
-                                            sentences.length > 1
-                                                ? `${sentences[0]}. ${sentences[1]}.`
-                                                : `${sentences[0]}.`;
+    .replace(/<[^>]*>?/gm, "")
+    .split(".")
+    .filter((s) => s.trim().length > 0);
+
+const overrides = {
+    "bitrues-adam-oneill-crypto-market-2026-52a632c0a9b4": "In this installment of our Leaders in Crypto series, we talk to Adam O’Neill, Chief Marketing Officer at Bitrue, about the exchange’s strategic use of AI, the current market shift toward institutional dominance, and the evolving crypto landscape. Adam explains that while Bitrue prioritizes human-led accuracy and security, it is experimenting with AI for growth operations and customer-facing tools."
+};
+
+const slugMatch = item.link.match(/medium\.com\/@lvrgpr\/([^?#]+)/);
+const slug = slugMatch ? slugMatch[1] : "";
+
+const description =
+    overrides[slug]
+        ? overrides[slug]
+        : sentences.length > 1
+            ? `${sentences[0]}. ${sentences[1]}.`
+            : `${sentences[0]}.`;
 
                                         const bgImage =
                                             index % 2 === 0
-                                                ? "car1.jpg"
-                                                : "car2.jpg";
+                                                ? "image/car1.jpg"
+                                                : "image/car2.jpg";
 
                                         return `
                                             <a href="${item.link}" target="_blank" class="carousel-slide ${index === 0 ? "active" : ""}"
@@ -2032,10 +2078,16 @@
                                 }
 
                                 // Clean up description
-                                const description =
-                                    article.description
-                                        .replace(/<[^>]*>/g, "")
-                                        .substring(0, 150) + "...";
+                                const overrides = {
+    "bitrues-adam-oneill-crypto-market-2026-52a632c0a9b4": "In this installment of our Leaders in Crypto series, we talk to Adam O’Neill, Chief Marketing Officer at Bitrue, about the exchange’s strategic use of AI, the current market shift toward institutional dominance, and the evolving crypto landscape. Adam explains that while Bitrue prioritizes human-led accuracy and security, it is experimenting with AI for growth operations and customer-facing tools."
+};
+
+const slugMatch = article.link.match(/medium\.com\/@lvrgpr\/([^?#]+)/);
+const slug = slugMatch ? slugMatch[1] : "";
+
+const description = overrides[slug]
+    ? overrides[slug]
+    : article.description.replace(/<[^>]*>/g, "").substring(0, 150) + "...";
 
                                 return `
                                     <div class="article-card" onclick="window.open('${article.link}', '_blank')">

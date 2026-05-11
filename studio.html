@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <title>LVRG Studio · The Contour of Crypto</title>
+  <style>
+    /* ----- base & variables (mirror index.html) ----- */
+    :root {
+      --dark-gray: #353535;
+      --teal: #65c5d4;
+      --white: #ffffff;
+      --light-gray: #ffffff;
+      --purple-bg: #4a0d5f;
+      --navy: #33133d;
+      --cinzel: 'Cinzel', serif;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--sans);
+    }
+    body {
+      line-height: 1.6;
+      color: var(--white);
+      background-color: var(--purple-bg);
+    }
+    h1, h2, h3, .logo {
+      font-weight: 700;
+      color: var(--white);
+    }
+    .container {
+      width: 100%;
+      padding: 0 40px;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    /* ----- header (fixed, same as index) ----- */
+    header {
+      position: fixed;
+      width: 100%;
+      background: var(--purple-bg);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 36px;
+      font-family: var(--cinzel);
+      color: var(--white);
+      letter-spacing: 2px;
+      font-weight: 400;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    nav ul li {
+      margin-left: 30px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--white);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: var(--teal);
+    }
+    .nav-dropdown {
+  position: relative;
+}
+.nav-dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--purple-bg);
+  border-top: 2px solid var(--teal);
+  padding: 8px 0;
+  min-width: 140px;
+  list-style: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
+.nav-dropdown .dropdown-menu li {
+  margin: 0;
+}
+.nav-dropdown .dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: var(--white);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.nav-dropdown .dropdown-menu li a:hover {
+  color: var(--teal);
+}
+
+    /* ----- hero (full width, similar background) ----- */
+    .hero {
+      background: url('image/star2.png') center center / cover no-repeat;
+      padding: 180px 0 100px;
+    }
+    .hero-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 64px;
+      color: var(--white);
+      line-height: 1.1;
+      width: 100%;
+      margin-bottom: 32px;
+    }
+    .hero-description {
+      max-width: 860px;
+      font-size: 1.05rem;
+      /* color: rgba(255,255,255,0.88); */
+      line-height: 1.75;
+      margin-top: 0;
+    }
+
+    /* ----- general section styling ----- */
+    .section-title {
+      text-align: left;
+      margin-bottom: 40px;
+      color: var(--purple-bg);
+      font-size: 36px;
+    }
+    .dark-section .section-title {
+      color: var(--white);
+    }
+
+    /* studio showcase cards (bigger version of news cards) */
+    .studio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .studio-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      height: 100%;
+    }
+    .studio-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+    }
+  .card-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.2 / 1;
+    object-fit: cover;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  #views-grid .card-img {
+  width: 100%;
+  height: 240px;           /* Fixed height instead of aspect-ratio */
+  object-fit: cover;
+  object-position: center; /* You can change this per image if needed */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+    .card-source {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .section-light .card-source {
+      color: var(--purple-bg) !important;
+      opacity: 0.7;
+    }
+    .card-body {
+      padding: 24px 20px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #fff;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.4;
+    }
+    .card-excerpt {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .card-link {
+      color: var(--teal);
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-top: auto;
+      display: inline-block;
+      transition: color 0.2s;
+    }
+    .studio-card:hover .card-link {
+      color: #fff;
+    }
+    #views-grid .studio-card:hover .card-link {
+    color: var(--teal);
+  }
+
+    /* sections background alternation */
+    .section-light {
+      background: var(--light-gray);
+      padding: 90px 0;
+    }
+.section-light .card-body,
+.section-light .card-body * {
+  color: var(--purple-bg);
+  background: #ededed;
+}
+
+    .section-dark {
+      background: var(--purple-bg);
+      padding: 90px 0;
+    }
+    .section-star {
+      background: url('image/star.png') center center / cover no-repeat;
+      padding: 90px 0;
+    }
+    .section-star2 {
+      background: var(--purple-bg);
+      padding: 90px 0;
+    }
+    .section-light .article-card {
+    background: rgba(0, 0, 0, 0.06) !important;
+}
+
+    /* footer (same as index) */
+    footer {
+      background: var(--purple-bg);
+      color: var(--white);
+      padding: 80px 0 40px;
+    }
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .footer-col h4 {
+      margin-bottom: 25px;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--white);
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+    .footer-col ul li a {
+      color: var(--light-gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-col ul li a:hover {
+      color: var(--teal);
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid var(--teal);
+      color: var(--light-gray);
+    }
+
+    /* contact section same style as index */
+    .contact-section {
+      padding: 100px 0;
+      background: var(--purple-bg);
+      text-align: center;
+    }
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .contact-section h2 {
+      font-size: 36px;
+      color: var(--white);
+      margin-bottom: 30px;
+    }
+    .contact-section p {
+      font-size: 18px;
+      color: var(--white);
+      margin-bottom: 40px;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+    .contact-btn {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--white);
+      padding: 15px 40px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+    .contact-btn:hover {
+      background: var(--teal);
+    }
+    .social-icons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .social-icons a {
+      color: var(--white);
+    }
+    
+    /* single-card centered layout for insights */
+    #insights-grid.single-card {
+      display: flex !important;
+      justify-content: center;
+    }
+    #insights-grid.single-card .studio-card {
+      max-width: 440px;
+      width: 100%;
+    }
+
+    /* loading / placeholder */
+    .loading-placeholder {
+      text-align: center;
+      padding: 20px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 1024px) {
+      .studio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero h1 {
+        font-size: 48px;
+      }
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 25px;
+      }
+      .header-container {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+      }
+      nav ul {
+        margin-top: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      nav ul li {
+        margin: 0 12px 8px;
+      }
+      .hero {
+        padding: 140px 0 70px;
+      }
+      .hero h1 {
+        font-size: 38px;
+      }
+      .studio-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-container">
+        <div class="logo">LVRG PR</div>
+        <nav>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li class="nav-dropdown">
+  <a href="#">Research</a>
+  <ul class="dropdown-menu">
+    <li><a href="/studio">Studio</a></li>
+  </ul>
+</li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>LVRG Studio - The Contour of Crypto</h1>
+        <p class="hero-description">LVRG Studio is the multimedia content studio operated by LVRG Research, the research and analysis division of LVRG PR. Designed as a curated platform for expert voices and institutional-grade insights, LVRG Studio delivers highlights from LVRG Research's rigorous market analysis while showcasing the latest trends, thought leadership, and forward-looking opportunities at the intersection of crypto and traditional finance.</p>
+        <br>
+        <p class="hero-description">By producing high-quality interviews, in-depth reports, and strategic perspectives across multiple formats, LVRG Studio strengthens dialogue between the crypto ecosystem and mainstream audiences, supporting deeper institutional engagement and informed decision-making.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1st section: Leaders in Crypto (dark background) -->
+  <section class="section-dark">
+    <div class="container">
+      <h2 class="section-title" style="color:var(--white);">Leaders in Crypto</h2>
+      <div class="studio-grid" id="leaders-grid">
+        <!-- filled by js with placeholder articles -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 2nd section: Views (light background with purple title) -->
+  <section class="section-light">
+    <div class="container">
+      <h2 class="section-title" style="color:var(--purple-bg);">Views</h2>
+      <div class="studio-grid" id="views-grid">
+        <!-- filled by js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 3rd section: Investment Insights (star background) -->
+  <section class="section-star2">
+    <div class="container">
+      <h2 class="section-title" style="color:var(--white);">Investment Insights</h2>
+      <div class="studio-grid single-card" id="insights-grid">
+        <!-- filled by js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact (same as index) -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-container">
+        <h2>Connect With Us</h2>
+        <p>We welcome the opportunity to discuss how we can help you achieve your financial goals. Reach out to our team for more information.</p>
+        <a href="mailto:info@lvrgpr.org?subject=LVRG%20Studio%20Contact&body=Please%20enter%20your%20message%20here" class="contact-btn">Contact Us</a>
+        <div class="social-icons">
+          <a href="https://twitter.com/LVRGPR" target="_blank" style="color:var(--white);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://linkedin.com/company/lvrg-pr/" target="_blank" style="color:var(--white);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a href="https://medium.com/@lvrgpr" target="_blank" style="color:var(--white);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 0h-20v24h20v-24zm-3.543 5.186v1.067h-.896c-.629 0-.754.315-.754.649v8.416c0 .334.125.649.754.649h.896v1.067h-4.562v-1.067h1.672v-9.65h-.05l-2.402 9.65h-.934l-2.368-9.65h-.064v9.65h1.672v1.067h-4.519v-1.067h.925c.629 0 .754-.315.754-.649v-8.416c0-.334-.125-.649-.754-.649h-.925v-1.067h6.666l1.771 7.886h.05l1.787-7.886h6.506z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (identical to index) -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>About</h4>
+            <ul><li><a href="about.html">Our Firm</a></li></ul>
+          </div>
+          <div class="footer-col">
+            <h4>News</h4>
+            <ul><li><a href="news.html">Latest Updates</a></li></ul>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul><li><a href="services.html">Our Offerings</a></li></ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul><li><a href="contact.html">Get in Touch</a></li></ul>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2026 LVRG PR. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Helper to generate a simple colored SVG placeholder (no external dependency)
+      function placeholderSVG(width, height, bgColor, text) {
+        const encodedText = encodeURIComponent(text);
+        return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect width="${width}" height="${height}" fill="${bgColor}"/><text x="50%" y="50%" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="white" text-anchor="middle" dy=".35em">${text}</text></svg>`)}`;
+      }
+
+      // ============================================================
+      // LEADERS IN CRYPTO — Edit each card individually below
+      // ============================================================
+      const leadersArticles = [
+        {
+          title: "HashKey: RWA Tokenization & AI-Crypto Infra",
+          excerpt: "Insights from HashKey on RWA tokenization, AI-driven infrastructure, and Hong Kong’s role in compliant crypto adoption.",
+          link: "https://medium.com/@lvrgpr/hashkey-on-rwa-tokenization-and-ai-driven-crypto-infrastructure-q-a-49a9350858f1",
+          image: "image/hkey-leaders.png"
+        },
+        {
+          title: "OSL's Ming Li: Institutional Shifts in 2026",
+          excerpt: "Insights from OSL’s Ming Li on stablecoin payments, PayFi growth, and institutional shifts driving 2026.",
+          link: "https://medium.com/@lvrgpr/osl-groups-ming-li-on-stablecoin-payments-and-institutional-shifts-in-2026-q-a-92b27df3d852",
+          image: "image/osl-leaders.png"
+        },
+        {
+          title: "Bitrue's Adam O'Neill: Crypto Market 2026",
+          excerpt: "Insights from Adam O'Neill on the evolving crypto landscape, regulatory shifts, and what 2026 holds for exchanges and institutional adoption.",
+          link: "https://medium.com/@lvrgpr/bitrues-adam-oneill-crypto-market-2026-52a632c0a9b4",
+          image: "image/bitrue-leaders.png"
+        }
+      ];
+
+      // ============================================================
+      // VIEWS — Live articles from CoinEx, HashKey, OSL
+      // CoinEx: https://www.coinex.com/en/insight?type=REPORT
+      // HashKey: https://group.hashkey.com/en/news
+      // OSL: https://www.osl.com/hk-en/press-release?channel=7rm1br
+      // ============================================================
+      const viewsArticles = [
+        {
+          title: "CoinEx Monthly: The Two Speed Market",
+          excerpt: "April revealed the market's new structure clearly: Bitcoin now has a persistent, regulated ETF bid, while the broader crypto market remains acutely sensitive to macro shocks and protocol-level counterparty risk.",
+          link: "https://www.coinex.com/en/insight/report/coinex-monthly-the-two-speed-market-69f873259c50b3eefb198b8e",
+          image: "https://www.coinex.com/_assets/img/og/default.png",
+          source: "CoinEx Research"
+        },
+        {
+          title: "2026 Web3 Festival Whitepaper: On-Chain Finance and Tokenization in the Age of the Agent Economy",
+          excerpt: "As AI agents deploy at scale and trigger massive, millisecond-level M2M collaboration, legacy financial systems and single-token models are reaching their limits. This report unpacks the foundational logic where AI meets Web3. We introduce a 'Tri-Token Model' built for the smart economy, outline four fundamental upgrades to on-chain infrastructure, and map out the next big wave of Real World Asset (RWA) tokenization.",
+          link: "https://group.hashkey.com/en/_files/ugd/e9bfc2_278d588e6b26433ab58ea6e58aa58558.pdf",
+          image: "image/hashkeyr1.png",
+          source: "HashKey Group"
+        },
+        {
+          title: "OSL Institutional Monthly Recap | April 2026",
+          excerpt: "April marked another strong month for OSL, as we continued to scale institutional infrastructure, deepen strategic partnerships, and accelerate adoption across stablecoins and real-world assets (RWA). Across product innovation, regulatory milestones, and ecosystem engagement, our focus remains clear: building trusted, institution-ready foundations for the next phase of digital finance.",
+          link: "https://www.osl.com/hk-en/press-release/april-institutional-monthly-highlights?channel=7rm1br",
+          image: "image/oslr1.png",
+          source: "OSL"
+        }
+      ];
+ 
+      // ============================================================
+      // INVESTMENT INSIGHTS — Edit each card individually below
+      // ============================================================
+      const insightsArticles = [
+        {
+          title: "Say Bye to Rock n Roll: New Era of Web3 Fundraising Enters",
+          excerpt: "The Web3 fundraising landscape has changed significantly from previous cycles categorized by intense volatility and speculative bubbles, transforming into a new era driven by institutional participation.",
+          link: "#",
+          image: "image/research.png"
+        }
+      ];
+
+      // Helper to create card HTML
+  function createCardHTML(article, isViews) {
+    const sourceBadge = article.source ? `<div class="card-source">${article.source}</div>` : '';
+    const readLabel = isViews ? `Read more →` : `Read more →`;
+    return `
+      <a href="${article.link}" target="_blank" class="studio-card">
+        <img src="${article.image}" alt="${article.title}" class="card-img" onerror="this.onerror=null; this.src='${placeholderSVG(600, 400, '#4a0d5f', 'LVRG Studio')}';">
+        <div class="card-body">
+        ${sourceBadge}
+          <div class="card-title">${article.title}</div>
+          <div class="card-excerpt">${article.excerpt}</div>
+          <span class="card-link">${readLabel}</span>
+        </div>
+      </a>
+    `;
+  }
+  
+      // Populate a grid section with an array of articles
+function fillGrid(gridId, articlesArray) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  let html = '';
+  for (let i = 0; i < articlesArray.length; i++) {
+    html += createCardHTML(articlesArray[i]);
+  }
+  grid.innerHTML = html;
+}
+      // Initialize all three sections
+      document.addEventListener('DOMContentLoaded', function() {
+        fillGrid('leaders-grid', leadersArticles, true);
+        fillGrid('views-grid', viewsArticles, true);
+        fillGrid('insights-grid', insightsArticles, false);
+      });
+
+      // Optional: if you want to fetch real Medium data later, you can replace the above.
+      // Currently using placeholders as requested.
+    })();
+  </script>
+</body>
+</html>

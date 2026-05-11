@@ -77,6 +77,37 @@
             nav ul li a:hover {
                 color: var(--teal);
             }
+            .nav-dropdown {
+  position: relative;
+}
+.nav-dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--purple-bg);
+  border-top: 2px solid var(--teal);
+  padding: 8px 0;
+  min-width: 140px;
+  list-style: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
+.nav-dropdown .dropdown-menu li {
+  margin: 0;
+}
+.nav-dropdown .dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: var(--white);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.nav-dropdown .dropdown-menu li a:hover {
+  color: var(--teal);
+}
 
             /* Hero Section */
             .hero {
@@ -273,13 +304,15 @@
                 border-radius: 4px;
                 overflow: hidden;
             }
-            .medium-article-image {
-                width: 100%;
-                height: 180px;
-                object-fit: cover;
-                margin-bottom: 15px;
-                border-radius: 4px;
-            }
+.medium-article-image {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
             .medium-article h3 {
                 color: var(--purple-bg);
                 margin-bottom: 15px;
@@ -479,6 +512,12 @@
                             <li><a href="about.html">About</a></li>
                             <li><a href="news.html">News</a></li>
                             <li><a href="services.html">Services</a></li>
+                            <li class="nav-dropdown">
+  <a href="#">Research</a>
+  <ul class="dropdown-menu">
+    <li><a href="/studio">Studio</a></li>
+  </ul>
+</li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </nav>
@@ -504,52 +543,52 @@
                     <div class="stories-ticker-content">
                         <!-- First set -->
                         <a href="https://www.bloomberg.com/news/articles/2025-10-30/bitcoin-btc-extends-losses-as-powell-cautions-against-rate-cut-bets?srnd=undefined" target="_blank" class="story-card-scroll">
-                            <img src="bloomberg.png" alt="Bloomberg" class="story-logo-scroll">
+                            <img src="image/bloomberg.png" alt="Bloomberg" class="story-logo-scroll">
                             <p class="story-quote-scroll">"Powell's tone caught traders off-guard and erased recent gains. Bitcoin traders should look for support at $107,000 and $100,000 as key downside levels."</p>
                         </a>
                         <a href="https://www.scmp.com/tech/tech-trends/article/3328141/bitcoin-bnb-hit-record-highs-global-turmoil-spurs-flight-safe-haven-crypto" target="_blank" class="story-card-scroll">
-                            <img src="scmp.PNG" alt="SCMP" class="story-logo-scroll">
+                            <img src="image/scmp.PNG" alt="SCMP" class="story-logo-scroll">
                             <p class="story-quote-scroll">"Bitcoin's surge signals its role as a hedge against fiscal uncertainty, as the US government shutdown wavers confidence in safe assets."</p>
                         </a>
                         <a href="https://www.reuters.com/business/retail-consumer/major-shift-shanghai-regulator-mulls-policy-responses-stablecoins-2025-07-11/" target="_blank" class="story-card-scroll">
-                            <img src="reuters.png" alt="Reuters" class="story-logo-scroll">
+                            <img src="image/reuters.png" alt="Reuters" class="story-logo-scroll">
                             <p class="story-quote-scroll">"Given China's strong fintech ecosystem, it has the potential to be a key player in shaping the future of blockchain-based payments."</p>
                         </a>
                         <a href="https://www.coindesk.com/markets/2025/10/01/traders-eye-september-jobs-report-for-cues-on-bitcoin-breakout-above-usd120k" target="_blank" class="story-card-scroll">
-                            <img src="coindesk.png" alt="CoinDesk" class="story-logo-scroll">
+                            <img src="image/coindesk.png" alt="CoinDesk" class="story-logo-scroll">
                             <p class="story-quote-scroll">"The crypto market is at a macroeconomic crossroads, caught between a softening labor market and resilient economic growth."</p>
                         </a>
                         <a href="https://www.theblock.co/post/376192/bitcoin-150000-short-liquidations" target="_blank" class="story-card-scroll">
-                            <img src="theblock.png" alt="The Block" class="story-logo-scroll">
+                            <img src="image/theblock.png" alt="The Block" class="story-logo-scroll">
                             <p class="story-quote-scroll">"Given the historical precedent of the Santa Rally, we anticipate a continuation of bullish momentum leading up to year-end, particularly following the 2024 halving cycle."</p>
                         </a>
                         <a href="https://cointelegraph.com/news/bitcoin-etfs-take-share-spot-trading-volume" target="_blank" class="story-card-scroll">
-                            <img src="cointelegraph.png" alt="Cointelegraph" class="story-logo-scroll">
+                            <img src="image/cointelegraph.png" alt="Cointelegraph" class="story-logo-scroll">
                             <p class="story-quote-scroll">"Current flow dynamics show ETFs are not just supplementing but actively reshaping spot market liquidity, with their trading activity increasingly correlated with underlying BTC price movements."</p>
                         </a>
                         <!-- Duplicate set for seamless loop -->
                         <a href="https://www.bloomberg.com/news/articles/2025-10-30/bitcoin-btc-extends-losses-as-powell-cautions-against-rate-cut-bets?srnd=undefined" target="_blank" class="story-card-scroll">
-                            <img src="bloomberg.png" alt="Bloomberg" class="story-logo-scroll">
+                            <img src="image/bloomberg.png" alt="Bloomberg" class="story-logo-scroll">
                             <p class="story-quote-scroll">"Powell's tone caught traders off-guard and erased recent gains. Bitcoin traders should look for support at $107,000 and $100,000 as key downside levels."</p>
                         </a>
                         <a href="https://www.scmp.com/tech/tech-trends/article/3328141/bitcoin-bnb-hit-record-highs-global-turmoil-spurs-flight-safe-haven-crypto" target="_blank" class="story-card-scroll">
-                            <img src="scmp.PNG" alt="SCMP" class="story-logo-scroll">
+                            <img src="image/scmp.PNG" alt="SCMP" class="story-logo-scroll">
                             <p class="story-quote-scroll">"Bitcoin's surge signals its role as a hedge against fiscal uncertainty, as the US government shutdown wavers confidence in safe assets."</p>
                         </a>
                         <a href="https://www.reuters.com/business/retail-consumer/major-shift-shanghai-regulator-mulls-policy-responses-stablecoins-2025-07-11/" target="_blank" class="story-card-scroll">
-                            <img src="reuters.png" alt="Reuters" class="story-logo-scroll">
+                            <img src="image/reuters.png" alt="Reuters" class="story-logo-scroll">
                             <p class="story-quote-scroll">"Given China's strong fintech ecosystem, it has the potential to be a key player in shaping the future of blockchain-based payments."</p>
                         </a>
                         <a href="https://www.coindesk.com/markets/2025/10/01/traders-eye-september-jobs-report-for-cues-on-bitcoin-breakout-above-usd120k" target="_blank" class="story-card-scroll">
-                            <img src="coindesk.png" alt="CoinDesk" class="story-logo-scroll">
+                            <img src="image/coindesk.png" alt="CoinDesk" class="story-logo-scroll">
                             <p class="story-quote-scroll">"The crypto market is at a macroeconomic crossroads, caught between a softening labor market and resilient economic growth."</p>
                         </a>
                         <a href="https://www.theblock.co/post/376192/bitcoin-150000-short-liquidations" target="_blank" class="story-card-scroll">
-                            <img src="theblock.png" alt="The Block" class="story-logo-scroll">
+                            <img src="image/theblock.png" alt="The Block" class="story-logo-scroll">
                             <p class="story-quote-scroll">"Given the historical precedent of the Santa Rally, we anticipate a continuation of bullish momentum leading up to year-end, particularly following the 2024 halving cycle."</p>
                         </a>
                         <a href="https://cointelegraph.com/news/bitcoin-etfs-take-share-spot-trading-volume" target="_blank" class="story-card-scroll">
-                            <img src="cointelegraph.png" alt="Cointelegraph" class="story-logo-scroll">
+                            <img src="image/cointelegraph.png" alt="Cointelegraph" class="story-logo-scroll">
                             <p class="story-quote-scroll">"Current flow dynamics show ETFs are not just supplementing but actively reshaping spot market liquidity, with their trading activity increasingly correlated with underlying BTC price movements."</p>
                         </a>
                     </div>
@@ -591,7 +630,7 @@
                                         target="_blank"
                                     >
                                         <img
-                                            src="image1.jpeg"
+                                            src="image/image1.jpeg"
                                             alt="SignalPlus Event"
                                         />
                                     </a>
@@ -602,7 +641,7 @@
                                         target="_blank"
                                     >
                                         <img
-                                            src="image2.jpeg"
+                                            src="image/image2.jpeg"
                                             alt="Bybit Event"
                                         />
                                     </a>
@@ -613,7 +652,7 @@
                                         target="_blank"
                                     >
                                         <img
-                                            src="image3.jpeg"
+                                            src="image/image3.jpeg"
                                             alt="Coincall Event"
                                         />
                                     </a>
@@ -624,7 +663,7 @@
                                         target="_blank"
                                     >
                                         <img
-                                            src="image4.jpeg"
+                                            src="image/image4.jpeg"
                                             alt="Bybit Event 2"
                                         />
                                     </a>
@@ -635,7 +674,7 @@
                                         target="_blank"
                                     >
                                         <img
-                                            src="image5.jpeg"
+                                            src="image/image5.jpeg"
                                             alt="Deribit Event"
                                         />
                                     </a>
@@ -646,7 +685,7 @@
                                         target="_blank"
                                     >
                                         <img
-                                            src="image6.jpeg"
+                                            src="image/image6.jpeg"
                                             alt="SignalPlus Event 2"
                                         />
                                     </a>
