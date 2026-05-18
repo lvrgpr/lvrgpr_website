@@ -238,6 +238,40 @@
     color: var(--teal);
   }
 
+
+/* Read more button for Leaders section */
+.read-more-btn {
+  display: block;
+  margin: 40px auto 0;
+  padding: 14px 36px;
+  background: transparent;
+  color: var(--teal);
+  border: 2px solid var(--teal);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  max-width: 200px;
+  text-align: center;
+}
+.read-more-btn:hover {
+  background: var(--teal);
+  color: var(--purple-bg);
+}
+
+/* Hidden extra cards */
+.leaders-extra {
+  display: none;
+  grid-column: 1 / -1;
+  display: none;
+}
+#leaders-grid.expanded .leaders-extra {
+  display: contents;
+}
+
+
+
     /* sections background alternation */
     .section-light {
       background: var(--light-gray);
@@ -450,15 +484,16 @@
     </div>
   </section>
 
-  <!-- 1st section: Leaders in Crypto (dark background) -->
-  <section class="section-dark">
-    <div class="container">
-      <h2 class="section-title" style="color:var(--white);">Leaders in Crypto</h2>
-      <div class="studio-grid" id="leaders-grid">
-        <!-- filled by js with placeholder articles -->
-      </div>
+<!-- 1st section: Leaders in Crypto (dark background) -->
+<section class="section-dark">
+  <div class="container">
+    <h2 class="section-title" style="color:var(--white);">Leaders in Crypto</h2>
+    <div class="studio-grid" id="leaders-grid">
+      <!-- filled by js with placeholder articles -->
     </div>
-  </section>
+    <button class="read-more-btn" id="leaders-read-more">Read more</button>
+  </div>
+</section>
 
   <!-- 2nd section: Views (light background with purple title) -->
   <section class="section-light">
@@ -531,118 +566,139 @@
     </div>
   </footer>
 
-  <script>
-    (function() {
-      // Helper to generate a simple colored SVG placeholder (no external dependency)
-      function placeholderSVG(width, height, bgColor, text) {
-        const encodedText = encodeURIComponent(text);
-        return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect width="${width}" height="${height}" fill="${bgColor}"/><text x="50%" y="50%" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="white" text-anchor="middle" dy=".35em">${text}</text></svg>`)}`;
+<script>
+  (function() {
+    function placeholderSVG(width, height, bgColor, text) {
+      return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect width="${width}" height="${height}" fill="${bgColor}"/><text x="50%" y="50%" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="white" text-anchor="middle" dy=".35em">${text}</text></svg>`)}`;
+    }
+
+    const leadersArticles = [
+      {
+        title: "Brinc's Tom Purdon on Agentic Finance, Tokenisation & Institutional Adoption",
+        excerpt: "Brinc’s Tom Purdon discusses AI-crypto convergence powering agentic finance, tokenisation momentum, and accelerating institutional adoption in 2026.",
+        link: "https://medium.com/@lvrgpr/brincs-tom-purdon-on-agentic-finance-tokenisation-institutional-adoption-q-a-6ca70be7497b",
+        image: "image/brinc-leaders.png"
+      },
+      {
+        title: "Arctic Digital's Justin d'Anethan on Institutional Convergence",
+        excerpt: "Insights from Justin d'Anethan on bridging crypto private markets with institutions via deal sourcing, tokenization, and regulatory clarity in 2026.",
+        link: "https://medium.com/@lvrgpr/arctic-digital-on-private-markets-and-institutional-convergence-in-crypto-q-a-85c10b2171bd",
+        image: "image/arctic-leaders.png"
+      },
+      {
+        title: "HashKey: RWA Tokenization & AI-Crypto Infrastructure",
+        excerpt: "Insights from HashKey on RWA tokenization, AI-driven infrastructure, and Hong Kong's role in compliant crypto adoption.",
+        link: "https://medium.com/@lvrgpr/hashkey-on-rwa-tokenization-and-ai-driven-crypto-infrastructure-q-a-49a9350858f1",
+        image: "image/hkey-leaders.png"
       }
+    ];
 
-      // ============================================================
-      // LEADERS IN CRYPTO — Edit each card individually below
-      // ============================================================
-      const leadersArticles = [
-      
-        {
-          title: "Arctic Digital's Justin d'Anethan on Institutional Convergence",
-          excerpt: "Insights from Justin d'Anethan on bridging crypto private markets with institutions via deal sourcing, tokenization, and regulatory clarity in 2026.",
-          link: "https://medium.com/@lvrgpr/arctic-digital-on-private-markets-and-institutional-convergence-in-crypto-q-a-85c10b2171bd",
-          image: "image/arctic-leaders.png"
-        },
-        {
-          title: "HashKey: RWA Tokenization & AI-Crypto Infra",
-          excerpt: "Insights from HashKey on RWA tokenization, AI-driven infrastructure, and Hong Kong’s role in compliant crypto adoption.",
-          link: "https://medium.com/@lvrgpr/hashkey-on-rwa-tokenization-and-ai-driven-crypto-infrastructure-q-a-49a9350858f1",
-          image: "image/hkey-leaders.png"
-        },
-        {
-          title: "OSL's Ming Li: Institutional Shifts in 2026",
-          excerpt: "Insights from OSL’s Ming Li on stablecoin payments, PayFi growth, and institutional shifts driving 2026.",
-          link: "https://medium.com/@lvrgpr/osl-groups-ming-li-on-stablecoin-payments-and-institutional-shifts-in-2026-q-a-92b27df3d852",
-          image: "image/osl-leaders.png"
-        }
-      ];
+    // Extra cards revealed on "Read more" — fill in your real content here
+    const extraLeaders = [
+      {
+        title: "OSL's Ming Li: Institutional Shifts in 2026",
+        excerpt: "Insights from OSL's Ming Li on stablecoin payments, PayFi growth, and institutional shifts driving 2026.",
+        link: "https://medium.com/@lvrgpr/osl-groups-ming-li-on-stablecoin-payments-and-institutional-shifts-in-2026-q-a-92b27df3d852",
+        image: "image/osl-leaders.png"
+      },
+      {
+        title: "Bitrue’s Adam O’Neill on the evolving crypto market shifts in 2026",
+        excerpt: "Bitrue’s Adam O’Neill outlines 2026 crypto shifts to institutional dominance, AI integration, XRP/RLUSD growth, and more.",
+        link: "https://medium.com/@lvrgpr/bitrues-adam-oneill-crypto-market-2026-52a632c0a9b4",
+        image: "image/bitrue-leaders.png"
+      },
+      {
+        title: "",
+        excerpt: "",
+        link: "#",
+        image: "image/placeholder.png"
+      }
+    ];
 
-      // ============================================================
-      // VIEWS — Live articles from CoinEx, HashKey, OSL
-      // CoinEx: https://www.coinex.com/en/insight?type=REPORT
-      // HashKey: https://group.hashkey.com/en/news
-      // OSL: https://www.osl.com/hk-en/press-release?channel=7rm1br
-      // ============================================================
-      const viewsArticles = [
-        {
-          title: "CoinEx Monthly: The Two Speed Market",
-          excerpt: "April revealed the market's new structure clearly: Bitcoin now has a persistent, regulated ETF bid, while the broader crypto market remains acutely sensitive to macro shocks and protocol-level counterparty risk.",
-          link: "https://www.coinex.com/en/insight/report/coinex-monthly-the-two-speed-market-69f873259c50b3eefb198b8e",
-          image: "https://www.coinex.com/_assets/img/og/default.png",
-          source: "CoinEx Research"
-        },
-        {
-          title: "2026 Web3 Festival Whitepaper: On-Chain Finance and Tokenization in the Age of the Agent Economy",
-          excerpt: "As AI agents deploy at scale and trigger massive, millisecond-level M2M collaboration, legacy financial systems and single-token models are reaching their limits. This report unpacks the foundational logic where AI meets Web3. We introduce a 'Tri-Token Model' built for the smart economy, outline four fundamental upgrades to on-chain infrastructure, and map out the next big wave of Real World Asset (RWA) tokenization.",
-          link: "https://group.hashkey.com/en/_files/ugd/e9bfc2_278d588e6b26433ab58ea6e58aa58558.pdf",
-          image: "image/hashkeyr1.png",
-          source: "HashKey Group"
-        },
-        {
-          title: "OSL Institutional Monthly Recap | April 2026",
-          excerpt: "April marked another strong month for OSL, as we continued to scale institutional infrastructure, deepen strategic partnerships, and accelerate adoption across stablecoins and real-world assets (RWA). Across product innovation, regulatory milestones, and ecosystem engagement, our focus remains clear: building trusted, institution-ready foundations for the next phase of digital finance.",
-          link: "https://www.osl.com/hk-en/press-release/april-institutional-monthly-highlights?channel=7rm1br",
-          image: "image/oslr1.png",
-          source: "OSL"
-        }
-      ];
- 
-      // ============================================================
-      // INVESTMENT INSIGHTS — Edit each card individually below
-      // ============================================================
-      const insightsArticles = [
-        {
-          title: "Say Bye to Rock 'n' Roll: New Era of Web3 Fundraising Enters",
-          excerpt: "The Web3 fundraising landscape has changed significantly from previous cycles categorized by intense volatility and speculative bubbles, transforming into a new era driven by institutional participation.",
-          link: "report/LVRG Studio Investment Research. May.2026.pdf",
-          image: "image/research.png"
-        }
-      ];
+    const viewsArticles = [
+      {
+        title: "CoinEx Monthly: The Two Speed Market",
+        excerpt: "April revealed the market's new structure clearly: Bitcoin now has a persistent, regulated ETF bid, while the broader crypto market remains acutely sensitive to macro shocks and protocol-level counterparty risk.",
+        link: "https://www.coinex.com/en/insight/report/coinex-monthly-the-two-speed-market-69f873259c50b3eefb198b8e",
+        image: "https://www.coinex.com/_assets/img/og/default.png",
+        source: "CoinEx Research"
+      },
+      {
+        title: "2026 Web3 Festival Whitepaper: On-Chain Finance and Tokenization in the Age of the Agent Economy",
+        excerpt: "As AI agents deploy at scale and trigger massive, millisecond-level M2M collaboration, legacy financial systems and single-token models are reaching their limits.",
+        link: "https://group.hashkey.com/en/_files/ugd/e9bfc2_278d588e6b26433ab58ea6e58aa58558.pdf",
+        image: "image/hashkeyr1.png",
+        source: "HashKey Group"
+      },
+      {
+        title: "OSL Institutional Monthly Recap | April 2026",
+        excerpt: "April marked another strong month for OSL, as we continued to scale institutional infrastructure, deepen strategic partnerships, and accelerate adoption across stablecoins and real-world assets (RWA).",
+        link: "https://www.osl.com/hk-en/press-release/april-institutional-monthly-highlights?channel=7rm1br",
+        image: "image/oslr1.png",
+        source: "OSL"
+      }
+    ];
 
-      // Helper to create card HTML
-  function createCardHTML(article, isViews) {
-    const sourceBadge = article.source ? `<div class="card-source">${article.source}</div>` : '';
-    const readLabel = isViews ? `Read more →` : `Read more →`;
-    return `
-      <a href="${article.link}" target="_blank" class="studio-card">
-        <img src="${article.image}" alt="${article.title}" class="card-img" onerror="this.onerror=null; this.src='${placeholderSVG(600, 400, '#4a0d5f', 'LVRG Studio')}';">
-        <div class="card-body">
-        ${sourceBadge}
-          <div class="card-title">${article.title}</div>
-          <div class="card-excerpt">${article.excerpt}</div>
-          <span class="card-link">${readLabel}</span>
-        </div>
-      </a>
-    `;
-  }
-  
-      // Populate a grid section with an array of articles
-function fillGrid(gridId, articlesArray) {
-  const grid = document.getElementById(gridId);
-  if (!grid) return;
-  let html = '';
-  for (let i = 0; i < articlesArray.length; i++) {
-    html += createCardHTML(articlesArray[i]);
-  }
-  grid.innerHTML = html;
-}
-      // Initialize all three sections
-      document.addEventListener('DOMContentLoaded', function() {
-        fillGrid('leaders-grid', leadersArticles, true);
-        fillGrid('views-grid', viewsArticles, true);
-        fillGrid('insights-grid', insightsArticles, false);
+    const insightsArticles = [
+      {
+        title: "Say Bye to Rock 'n' Roll: New Era of Web3 Fundraising Enters",
+        excerpt: "The Web3 fundraising landscape has changed significantly from previous cycles categorized by intense volatility and speculative bubbles, transforming into a new era driven by institutional participation.",
+        link: "report/LVRG Studio Investment Research. May.2026.pdf",
+        image: "image/research.png"
+      }
+    ];
+
+    function createCardHTML(article, isViews) {
+      const sourceBadge = article.source ? `<div class="card-source">${article.source}</div>` : '';
+      return `
+        <a href="${article.link}" target="_blank" class="studio-card">
+          <img src="${article.image}" alt="${article.title}" class="card-img" onerror="this.onerror=null; this.src='${placeholderSVG(600, 400, '#4a0d5f', 'LVRG Studio')}';">
+          <div class="card-body">
+            ${sourceBadge}
+            <div class="card-title">${article.title}</div>
+            <div class="card-excerpt">${article.excerpt}</div>
+            <span class="card-link">Read more →</span>
+          </div>
+        </a>
+      `;
+    }
+
+    function fillGrid(gridId, articlesArray, isViews) {
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+      grid.innerHTML = articlesArray.map(a => createCardHTML(a, isViews)).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      fillGrid('leaders-grid', leadersArticles, false);
+      fillGrid('views-grid', viewsArticles, true);
+      fillGrid('insights-grid', insightsArticles, false);
+
+      // Append hidden extra cards to the leaders grid
+      const grid = document.getElementById('leaders-grid');
+      const btn = document.getElementById('leaders-read-more');
+      let expanded = false;
+
+      const extraCards = extraLeaders.map(a => {
+        const temp = document.createElement('div');
+        temp.innerHTML = createCardHTML(a, false);
+        const card = temp.firstElementChild;
+        card.style.display = 'none';
+        return card;
       });
 
-      // Optional: if you want to fetch real Medium data later, you can replace the above.
-      // Currently using placeholders as requested.
-    })();
-  </script>
+      extraCards.forEach(card => grid.appendChild(card));
+
+      btn.addEventListener('click', function() {
+        expanded = !expanded;
+        extraCards.forEach(card => {
+          card.style.display = expanded ? 'flex' : 'none';
+        });
+        btn.textContent = expanded ? 'Show less' : 'Read more';
+      });
+    });
+
+  })();
+</script>
 </body>
 </html>
