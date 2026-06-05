@@ -295,12 +295,11 @@
                 background: var(--teal);
             }
             .carousel-title {
-                font-size: 45px;
+                font-size: 40px;
                 margin: 100px;
                 text-align: center;
                 pointer-events: none;
-                font-family:
-                    "Helvetica Neue", Helvetica, Arial, sans-serif; /* Not Cinzel */
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             }
 
             .carousel-description {
@@ -1795,12 +1794,20 @@ const overrides = {
 const slugMatch = item.link.match(/medium\.com\/@lvrgpr\/([^?#]+)/);
 const slug = slugMatch ? slugMatch[1] : "";
 
-const description =
-    overrides[slug]
-        ? overrides[slug]
-        : sentences.length > 1
-            ? `${sentences[0]}. ${sentences[1]}.`
-            : `${sentences[0]}.`;
+const rawDescription = overrides[slug]
+    ? overrides[slug]
+    : sentences.length > 1
+        ? `${sentences[0]}. ${sentences[1]}.`
+        : `${sentences[0]}.`;
+
+const plainDesc = item.description.replace(/<[^>]*>?/gm, "").trim();
+const firstLine = plainDesc.split('\n')[0].trim();
+const fullTitle = item.title.endsWith('…') ? firstLine : item.title;
+
+const words = rawDescription.trim().split(/\s+/);
+const description = words.length > 65
+    ? words.slice(0, 65).join(" ") + "..."
+    : rawDescription;
 
                                         const bgImage =
                                             index % 2 === 0
@@ -1812,7 +1819,7 @@ const description =
                                                   style="background-image: url('${bgImage}'); background-size: cover; background-position: center;">
                                                 <div class="carousel-content">
                                                 <h3 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 400;">LVRG Research</h3>
-                                                    <div class="carousel-title">${item.title}</div>
+                                                    <div class="carousel-title">${fullTitle}</div>
                                                     <p class="carousel-description">${description}</p>
                                                 </div>
                                             </a>
@@ -1826,14 +1833,7 @@ const description =
                                 );
 
                                 // Create indicators
-                                const indicatorsHTML = data.items
-                                    .slice(0, 3)
-                                    .map((_, index) => {
-                                        return `<div class="carousel-indicator ${index === 0 ? "active" : ""}" data-index="${index}"></div>`;
-                                    })
-                                    .join("");
-
-                                indicatorsContainer.innerHTML = indicatorsHTML;
+                                indicatorsContainer.innerHTML = '';
 
                                 // Initialize carousel functionality
                                 initCarousel();
