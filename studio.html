@@ -601,13 +601,14 @@
 
       try {
         const res  = await fetch(
-          'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@lvrgpr&count=50&_=' + Date.now()
+          'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@lvrgpr'
         );
         const data = await res.json();
-        if (data.status !== 'ok') throw new Error('rss error');
+        if (!data.items || !data.items.length) throw new Error('no items in feed');
 
+        const NON_QA = ['Crypto in times of crisis', 'LVRG Research Debuts'];
         const articles = data.items
-          .filter(item => item.title.includes('[Q&A]'))
+          .filter(item => item.title.includes('[Q&amp;A]') || (item.title.endsWith('…') && !NON_QA.some(s => item.title.includes(s))))
           .map(item => {
             let image = item.thumbnail || '';
             if (!image && item.content) {
@@ -652,74 +653,6 @@
 
       } catch (err) {
         console.error('Leaders fetch error:', err);
-        // Graceful fallback — keep the existing hardcoded data
-        const fallback = [
-          {
-            title:   "[Q&A] SignalPlus's Augustine Fan on Institutional Derivatives Infra",
-            excerpt: "Augustine Fan on SignalPlus's AI-powered crypto derivatives, TradFi convergence, and navigating the current bear market.",
-            link:    "https://medium.com/@lvrgpr/signalpluss-augustine-fan-on-institutional-derivatives-infrastructure-and-the-maturing-crypto-fe01306d5cb0",
-            image:   "image/signalplus-leaders.png"
-          },
-          {
-            title:   "[Q&A] LTP's Jack Yang on Digital Asset Infrastructure & RWAs",
-            excerpt: "Jack Yang on LTP's institutional prime brokerage, AI-crypto convergence, RWAs, and the future of digital asset infrastructure.",
-            link:    "https://medium.com/@lvrgpr/ltps-jack-yang-on-digital-asset-infrastructure-real-world-assets-and-the-future-of-institutional-fa2058d9a9b4",
-            image:   "image/ltp-leaders.png"
-          },
-          {
-            title:   "[Q&A] SparseMind's Davide Liu on AI-Crypto Convergence",
-            excerpt: "Davide shares AI-crypto convergence, data center growth impacts, mining evolution, infrastructure investments, and key yearly themes.",
-            link:    "https://medium.com/@lvrgpr/sparseminds-davide-liu-on-ai-crypto-convergence-and-infrastructure-evolution-q-a-371f99dc676c",
-            image:   "image/sparsemind-leaders.png"
-          }
-        ];
-        const extra = [
-          {
-            title:   "[Q&A] Brinc's Tom Purdon on Agentic Finance & Tokenisation",
-            excerpt: "Brinc's Tom Purdon discusses AI-crypto convergence powering agentic finance, tokenisation momentum, and accelerating institutional adoption in 2026.",
-            link:    "https://medium.com/@lvrgpr/brincs-tom-purdon-on-agentic-finance-tokenisation-institutional-adoption-q-a-6ca70be7497b",
-            image:   "image/brinc-leaders.png"
-          },
-          {
-            title:   "[Q&A] Arctic Digital's Justin d'Anethan on Institutional Convergence",
-            excerpt: "Insights from Justin d'Anethan on bridging crypto private markets with institutions via deal sourcing, tokenization, and regulatory clarity in 2026.",
-            link:    "https://medium.com/@lvrgpr/arctic-digital-on-private-markets-and-institutional-convergence-in-crypto-q-a-85c10b2171bd",
-            image:   "image/arctic-leaders.png"
-          },
-          {
-            title:   "[Q&A] HashKey on RWA Tokenization & AI-Crypto Infrastructure",
-            excerpt: "Insights from HashKey on RWA tokenization, AI-driven infrastructure, and Hong Kong's role in compliant crypto adoption.",
-            link:    "https://medium.com/@lvrgpr/hashkey-on-rwa-tokenization-and-ai-driven-crypto-infrastructure-q-a-49a9350858f1",
-            image:   "image/hkey-leaders.png"
-          },
-          {
-            title:   "[Q&A] OSL's Ming Li on Stablecoin Payments & Institutional Shifts",
-            excerpt: "Insights from OSL's Ming Li on stablecoin payments, PayFi growth, and institutional shifts driving 2026.",
-            link:    "https://medium.com/@lvrgpr/osl-groups-ming-li-on-stablecoin-payments-and-institutional-shifts-in-2026-q-a-92b27df3d852",
-            image:   "image/osl-leaders.png"
-          },
-          {
-            title:   "[Q&A] Bitrue's Adam O'Neill on Crypto Market Shifts in 2026",
-            excerpt: "Bitrue's Adam O'Neill outlines 2026 crypto shifts to institutional dominance, AI integration, XRP/RLUSD growth, and more.",
-            link:    "https://medium.com/@lvrgpr/bitrues-adam-oneill-crypto-market-2026-52a632c0a9b4",
-            image:   "image/bitrue-leaders.png"
-          }
-        ];
-        grid.innerHTML = fallback.map(a => createCardHTML(a, false)).join('');
-        let expanded = false;
-        const extraCards = extra.map(a => {
-          const tmp = document.createElement('div');
-          tmp.innerHTML = createCardHTML(a, false);
-          const card = tmp.firstElementChild;
-          card.style.display = 'none';
-          return card;
-        });
-        extraCards.forEach(c => grid.appendChild(c));
-        btn.addEventListener('click', () => {
-          expanded = !expanded;
-          extraCards.forEach(c => { c.style.display = expanded ? 'flex' : 'none'; });
-          btn.textContent = expanded ? 'Show less' : 'Read more';
-        });
       }
     }
 
