@@ -601,14 +601,14 @@
 
       try {
         const res  = await fetch(
-          'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@lvrgpr'
+          'https://medium-feed-proxy.twilight-smoke-1b9d.workers.dev/'
         );
         const data = await res.json();
         if (!data.items || !data.items.length) throw new Error('no items in feed');
 
         const NON_QA = ['Crypto in times of crisis', 'LVRG Research Debuts'];
         const articles = data.items
-          .filter(item => item.title.includes('[Q&amp;A]') || (item.title.endsWith('…') && !NON_QA.some(s => item.title.includes(s))))
+          .filter(item => item.title.includes('[Q&A]') || (item.title.endsWith('…') && !NON_QA.some(s => item.title.includes(s))))
           .map(item => {
             let image = item.thumbnail || '';
             if (!image && item.content) {
