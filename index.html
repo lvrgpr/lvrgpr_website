@@ -1802,7 +1802,9 @@ const rawDescription = overrides[slug]
 
 const plainDesc = item.description.replace(/<[^>]*>?/gm, "").trim();
 const firstLine = plainDesc.split('\n')[0].trim();
-const fullTitle = item.title.endsWith('…') ? firstLine : item.title;
+const fullTitle = item.title.endsWith('…')
+    ? item.title.replace(/…$/, '').trim()
+    : item.title;
 
 const words = rawDescription.trim().split(/\s+/);
 const description = words.length > 65
