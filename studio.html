@@ -600,11 +600,21 @@
       const btn  = document.getElementById('leaders-read-more');
 
       try {
-        const res  = await fetch(
-          'https://medium-feed-proxy.twilight-smoke-1b9d.workers.dev/'
-        );
-        const data = await res.json();
-        if (!data.items || !data.items.length) throw new Error('no items in feed');
+        const [feedRes, archiveRes] = await Promise.all([
+          fetch('https://medium-feed-proxy.twilight-smoke-1b9d.workers.dev/'),
+          fetch('https://medium-feed-proxy.twilight-smoke-1b9d.workers.dev/qa-archive'),
+        ]);
+        const feedData    = await feedRes.json();
+        const archiveData = await archiveRes.json();
+
+        const seenGuids = new Set();
+        const allItems  = [];
+        for (const item of [...(feedData.items || []), ...(archiveData.items || [])]) {
+          const key = item.guid || item.link;
+          if (!seenGuids.has(key)) { seenGuids.add(key); allItems.push(item); }
+        }
+        const data = { items: allItems };
+        if (!data.items.length) throw new Error('no items in feed');
 
         const NON_QA = ['Crypto in times of crisis', 'LVRG Research Debuts'];
         const articles = data.items
