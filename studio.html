@@ -607,12 +607,21 @@
         const feedData    = await feedRes.json();
         const archiveData = await archiveRes.json();
 
-        const seenGuids = new Set();
-        const allItems  = [];
-        for (const item of [...(feedData.items || []), ...(archiveData.items || [])]) {
-          const key = item.guid || item.link;
-          if (!seenGuids.has(key)) { seenGuids.add(key); allItems.push(item); }
+        function canonicalKey(item) {
+          const raw = (item.link || item.guid || '').split('?')[0].replace(/\/+$/, '');
+          const m = raw.match(/-([0-9a-f]{12})$/i) || raw.match(/\/p\/([0-9a-f]{12})$/i);
+          return m ? m[1].toLowerCase() : raw.toLowerCase();
         }
+
+        const seenKeys = new Set();
+        const allItems  = [];
+        // Archive is the authoritative, complete history; live feed only adds
+        // items the archive doesn't have yet (e.g. brand new posts).
+        for (const item of [...(archiveData.items || []), ...(feedData.items || [])]) {
+          const key = canonicalKey(item);
+          if (!seenKeys.has(key)) { seenKeys.add(key); allItems.push(item); }
+        }
+        allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
         const data = { items: allItems };
         if (!data.items.length) throw new Error('no items in feed');
 
